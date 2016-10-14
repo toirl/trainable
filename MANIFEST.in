@@ -1,0 +1,17 @@
+include *.txt *.ini *.cfg *.rst
+include trainable/alembic/alembic.ini
+include trainable/alembic/script.py.mako
+recursive-include trainable/alembic *.py
+recursive-include trainable/fixtures *.json
+include trainable/locale/de/LC_MESSAGES/trainable.po
+include trainable/locale/en/LC_MESSAGES/trainable.po
+include trainable/locale/de/LC_MESSAGES/trainable.mo
+include trainable/locale/en/LC_MESSAGES/trainable.mo
+include trainable/locale/trainable.pot
+recursive-include trainable/scripts *.sql
+recursive-include trainable/static *
+recursive-include trainable/scaffolds *
+recursive-include trainable/templates *.mako
+recursive-include trainable/views/forms *.xml
+recursive-include trainable/views/tables *.json
+global-exclude *.orig
