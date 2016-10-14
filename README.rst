@@ -1,5 +1,6 @@
-trainable README
+Trainable README
 ==================
+Trainable is a web application for recording your workouts to achieve your goals.
 
 Getting Started
 ---------------
