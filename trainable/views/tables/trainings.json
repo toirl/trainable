@@ -1,7 +1,15 @@
 {
     "overview": {
         "columns": [
-            {"name": "id", "label": "ID"}
-        ]
+            {"name": "date", "label": "Date"},
+            {"name": "sport", "label": "Sport", "expand": true},
+            {"name": "distance", "label": "Distance [m]"},
+            {"name": "speed", "label": "Averange Speed [km/h]"},
+            {"name": "rating", "label": "Rating", "expand": true}
+        ],
+        "settings": {
+          "default-sort-column": "date",
+          "default-sort-order": "desc"
+        } 
     }
 }
