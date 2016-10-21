@@ -28,3 +28,4 @@ def includeme(config):
     config.add_translation_dirs('trainable:locale/')
     config.add_static_view('trainable-static', path='trainable:static',
                            cache_max_age=3600)
+    config.add_route("syncstrava", "/strava/sync")
