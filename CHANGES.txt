@@ -1,3 +1,9 @@
+0.1
+---
+- Enable first basic sync functionallity with Strava. Strava is the leading
+  source of activitydata. Activities can be downloaded to trainable. Local
+  created activities can also be uploaded to strava.
+
 0.0
 ---
 
