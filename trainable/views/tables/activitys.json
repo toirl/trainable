@@ -2,6 +2,7 @@
     "overview": {
         "columns": [
             {"name": "date", "label": "Date"},
+            {"name": "title", "label": "Title"},
             {"name": "sport", "label": "Sport", "expand": true},
             {"name": "distance", "label": "Distance [m]"},
             {"name": "speed", "label": "Averange Speed [km/h]"},
