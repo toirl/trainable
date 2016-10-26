@@ -10,7 +10,9 @@ from pyramid.view import view_config
 from ringo.lib.imexport import JSONImporter
 from ringo.lib.helpers import serialize
 from ringo.views.base.import_ import _handle_save
+from ringo.views.home import index_view
 from ringo.model.base import get_item_list
+
 from trainable.model.training import Training
 
 log = logging.getLogger(__name__)
@@ -22,10 +24,24 @@ def web_sync(request):
     return HTTPFound(location=request.route_path("home"))
 
 
+@view_config(route_name='authstrava', renderer='/index.mako')
+def strava_authorisation_view(request):
+    values = index_view(request)
+    code = request.GET.get("code")
+    client = Client()
+    client_id = request.user.profile[0].strava_client_id
+    client_secret = request.registry.settings.get("strava.client_secret")
+    access_token = client.exchange_code_for_token(client_id=client_id,
+                                                  client_secret=client_secret,
+                                                  code=code)
+    request.user.profile[0].strava_access_key = access_token
+    request.session.flash("Authorized client", "success")
+    return values
+
+
 def get_access_token(request):
     """Returns the configured access token from the configuration"""
-    settings = request.registry.settings
-    return settings.get("strava.access_token")
+    return request.user.profile[0].strava_access_key
 
 
 def get_activity_type(training):
