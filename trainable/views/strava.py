@@ -66,6 +66,8 @@ def strava2trainable(strava):
     trainable = {}
     trainable["strava_id"] = strava.id
     trainable["title"] = strava.name
+    # The desciption seems not to be included in the response?
+    # trainable["description"] = strava.description
     trainable["distance"] = float(strava.distance)
     trainable["duration"] = serialize(strava.moving_time)
     trainable["elevation"] = float(strava.total_elevation_gain)
