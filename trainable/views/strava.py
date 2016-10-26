@@ -27,6 +27,15 @@ def get_access_token(request):
     return settings.get("strava.access_token")
 
 
+def get_training_type(activity):
+    if activity.type == "Run":
+        return 1
+    elif activity.type == "Ride":
+        return 2
+    elif activity.type == "Swim":
+        return 3
+
+
 def activity2training(activity):
     training = {}
     training["strava_id"] = activity.id
@@ -34,12 +43,7 @@ def activity2training(activity):
     training["distance"] = float(activity.distance)
     training["duration"] = serialize(activity.moving_time)
     training["elevation"] = float(activity.total_elevation_gain)
-    if activity.type == "Run":
-        training["sport"] = 1
-    elif activity.type == "Ride":
-        training["sport"] = 2
-    elif activity.type == "Swim":
-        training["sport"] = 3
+    training["sport"] = get_training_type(activity)
     training["date"] = serialize(activity.start_date)
     training["heartrate"] = activity.average_heartrate
     return training
