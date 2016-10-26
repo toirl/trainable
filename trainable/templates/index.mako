@@ -16,7 +16,7 @@ mapping={'app_title': h.get_app_title()}
 % else:
   <h2>Add training</h2>
   <p>
-    <a href="${request.route_path('trainings-create')}" class="btn btn-primary btn-large" title="${_('Log a new training')}">${_('Log a new training')}</a>
+    <a href="${request.route_path('activitys-create')}" class="btn btn-primary btn-large" title="${_('Log a new training')}">${_('Log a new training')}</a>
   </p>
   <h2>Strava Sync</h2>
   % if not request.user.profile[0].strava_client_id:

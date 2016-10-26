@@ -6,8 +6,8 @@ from ringo.model.mixins import (
 )
 
 
-class Training(BaseItem, Owned, Base):
-    __tablename__ = 'trainings'
+class Activity(BaseItem, Owned, Base):
+    __tablename__ = 'activitys'
     _modul_id = 1000
     id = sa.Column(sa.Integer, primary_key=True)
     strava_id = sa.Column(sa.Integer)

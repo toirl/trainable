@@ -13,7 +13,7 @@ from ringo.views.base.import_ import _handle_save
 from ringo.views.home import index_view
 from ringo.model.base import get_item_list
 
-from trainable.model.training import Training
+from trainable.model.activity import Activity
 
 log = logging.getLogger(__name__)
 
@@ -44,35 +44,35 @@ def get_access_token(request):
     return request.user.profile[0].strava_access_key
 
 
-def get_activity_type(training):
-    if training.sport == 1:
+def get_strava_activity_type(trainable):
+    if trainable.sport == 1:
         return "Run"
-    elif training.sport == 2:
+    elif trainable.sport == 2:
         return "Ride"
-    elif training.sport == 3:
+    elif trainable.sport == 3:
         return "Swim"
 
 
-def get_training_type(activity):
-    if activity.type == "Run":
+def get_trainable_activity_type(strava):
+    if strava.type == "Run":
         return 1
-    elif activity.type == "Ride":
+    elif strava.type == "Ride":
         return 2
-    elif activity.type == "Swim":
+    elif strava.type == "Swim":
         return 3
 
 
-def activity2training(activity):
-    training = {}
-    training["strava_id"] = activity.id
-    training["title"] = activity.name
-    training["distance"] = float(activity.distance)
-    training["duration"] = serialize(activity.moving_time)
-    training["elevation"] = float(activity.total_elevation_gain)
-    training["sport"] = get_training_type(activity)
-    training["date"] = serialize(activity.start_date)
-    training["heartrate"] = activity.average_heartrate
-    return training
+def strava2trainable(strava):
+    trainable = {}
+    trainable["strava_id"] = strava.id
+    trainable["title"] = strava.name
+    trainable["distance"] = float(strava.distance)
+    trainable["duration"] = serialize(strava.moving_time)
+    trainable["elevation"] = float(strava.total_elevation_gain)
+    trainable["sport"] = get_trainable_activity_type(strava)
+    trainable["date"] = serialize(strava.start_date)
+    trainable["heartrate"] = strava.average_heartrate
+    return trainable
 
 
 def get_new_and_updated_activities(request, trainings, activities):
@@ -88,11 +88,11 @@ def update_trainable(request):
     """Will update and create new trainable entries based on the data on
     strava."""
     client = Client(access_token=get_access_token(request))
-    trainings = []
+    activities = []
     for activity in client.get_activities():
-        trainings.append(activity2training(activity))
-    importer = JSONImporter(Training)
-    items = importer.perform(json.dumps(trainings),
+        activities.append(strava2trainable(activity))
+    importer = JSONImporter(Activity)
+    items = importer.perform(json.dumps(activities),
                              request.user, load_key="strava_id")
     return _handle_save(request, items, None)
 
@@ -101,19 +101,19 @@ def update_strava(request):
     """Will upload all training entries which are not yet uploaded to
     strava to strava."""
     client = Client(access_token=get_access_token(request))
-    trainings = get_item_list(request, Training)
-    for training in trainings:
-        # If the strava_id is None than the training as not uploaded
+    activities = get_item_list(request, Activity)
+    for activity in activities:
+        # If the strava_id is None than the activity as not uploaded
         # before.
-        if training.strava_id is None:
-            log.debug("Upload of traing {id} to strava".format(id=training.id))
-            activity = client.create_activity(training.title,
-                                              get_activity_type(training),
-                                              training.date,
-                                              training.duration.seconds,
-                                              training.description,
-                                              training.distance)
-            training.strava_id = activity.id
+        if activity.strava_id is None:
+            log.debug("Upload of traing {id} to strava".format(id=activity.id))
+            strava = client.create_activity(activity.title,
+                                            get_strava_activity_type(activity),
+                                            activity.date,
+                                            activity.duration.seconds,
+                                            activity.description,
+                                            activity.distance)
+            activity.strava_id = strava.id
 
 
 def sync(request):
