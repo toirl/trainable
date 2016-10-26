@@ -8,7 +8,7 @@ can be created.
 Trainable will stay in the background and anaylse your training data to give
 feedback about your progress on the way to the training goal.
 
-Trainable uses Strava as its main source for training data. So athlets can use
+Trainable uses Strava as its main source for training data. So athlets can
 continue to use their favorite tracking software.
 
 
