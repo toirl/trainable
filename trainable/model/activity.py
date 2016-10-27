@@ -47,6 +47,20 @@ class Activity(BaseItem, Owned, Base):
     """A title for the training"""
     description = sa.Column('description', sa.String, nullable=False, default='')
     """A short description of the training"""
+    temperature = sa.Column('temperature', sa.Float)
+    """Temperatur during the workout."""
+    wind = sa.Column('wind', sa.Integer)
+    """How windy was it during the activity"""
+    weather = sa.Column('weather', sa.Integer)
+    """How was the weather during your activity"""
+    sleep = sa.Column('sleep', sa.Integer)
+    """How well was the sleep of the athlet"""
+    pain = sa.Column('pain', sa.Integer)
+    """Was the activity acomplished under/with pain?"""
+    restheartrate = sa.Column('restheartrate', sa.Integer)
+    """What was the resting heartrate"""
+    weight = sa.Column('weigth', sa.Float)
+    """Was the activity acomplished under/with pain?"""
 
     @property
     def speed(self):
