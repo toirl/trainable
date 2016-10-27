@@ -1,6 +1,7 @@
 Everything is Trainable
 =======================
-Trainable is a open source web application for targeted Training control.
+Trainable is a open source web application for targeted Training control
+with focus on cyclists.
 
 Trainable let you define custom trainings goals for which a trainingplan
 can be created.
@@ -21,21 +22,18 @@ objectives of training unit.
 
 Performanance diagnostics
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-Currently not implemented
-
 Currently Planned:
 
-        - Critical Power Tests (CP)
-        - Aerobic endurance (Steptests to find your heartrate/power at lactate threshold)
+* Critical Power Tests (CP)
+* Aerobic endurance (Steptests to find your heartrate/power at lactate threshold)
+* Nice graphics and diagrams
 
 Trainingplan with goals
 ^^^^^^^^^^^^^^^^^^^^^^^
-Currently not implemented
-
 Currently Planned:
 
-        - Google calender integration
-        - Predefined and custum training units
+* Google calender integration
+* Predefined and custum training units
 
 Workout tracking
 ^^^^^^^^^^^^^^^^
@@ -44,19 +42,27 @@ continue to use their favorite tracking software. However trainable provides
 some additional fields to get a better option to use trainable as your logbook
 for your workouts.
 
-        - Distance
-        - Duration
-        - Time
-        - RPE (Borg15)
-        - Average Hearrate
-        - Description
-        - Athlets bio data like rest heartrate,weight or sleep
-        - External circumstances like weather, wind etc.
+* Distance
+* Duration
+* Time
+* RPE (Borg15)
+* Average Hearrate
+* Description
+* Athlets bio data like rest heartrate,weight or sleep
+* External circumstances like weather, wind etc.
 
 Statistics/Evaluation
 ^^^^^^^^^^^^^^^^^^^^^
-Currently not implemented
+Trainable will focus on the analysis of your training plan. Analysis of your
+workout is left to strava and other third pary tools. They are very goog at :)
+However trainable will give you a good overview of your progress in your
+training plan:
 
+Currently Planned:
+
+* Pensum (Duration*Intensity)
+* Trainingours (Weekly, Monthly)
+* Training focus
 
 
 Getting Started
