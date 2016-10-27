@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
   <source>
-    <entity id="date" name="date" label="Date" type="date"/>
-    <entity id="duration" name="duration" label="Duration" type="interval"/>
-    <entity id="sport" name="sport" label="Kind of sport" type="integer">
+    <entity id="date" name="date" label="Date" type="date" required="true"/>
+    <entity id="duration" name="duration" label="Duration" type="interval" required="true"/>
+    <entity id="sport" name="sport" label="Sport" type="integer" required="true">
       <options>
         <option value="1">Running</option>
         <option value="2">Cycling</option>
@@ -11,8 +11,9 @@
       </options>
       <renderer type="radio"/>
     </entity>
-    <entity id="rating" name="rating" label="Subjective rating" type="integer">
+    <entity id="rating" name="rating" label="Rating" type="integer" desired="true">
       <options>
+        <option value="">not specified</option>
         <option value="1">very good</option>
         <option value="2">good</option>
         <option value="3">normal</option>
@@ -21,8 +22,9 @@
       </options>
       <renderer type="radio" align="vertical"/>
     </entity>
-    <entity id="intensity" name="intensity" label="Persieved Exertion" type="integer">
+    <entity id="intensity" name="intensity" label="Persieved Exertion" type="integer" required="true">
       <options>
+        <option value="">not specified</option>
         <option value="6">06 - None (Reading a book)</option>
         <option value="7">07 - Very, Very Light</option>
         <option value="8">08 - Very, Very Light</option>
@@ -39,17 +41,17 @@
         <option value="19">19 - Very, Very Hard (Maximum, can not maintain this for long</option>
         <option value="20">20 - Very, Very Hard (Maximum, can not maintain this for long</option>
       </options>
-      <renderer type="radio" align="vertical"/>
+      <renderer type="dropdown" align="vertical"/>
     </entity>
-    <entity id="distance" name="distance" label="Distance [m]" type="integer"/>
+    <entity id="distance" name="distance" label="Distance [m]" type="integer" required="true"/>
     <entity id="elevation" name="elevation" label="Elevation [m]" type="integer"/>
     <entity id="speed" name="speed" label="Average Speed [km/h]">
       <renderer type="info"/>
     </entity>
-    <entity id="heartrate" name="heartrate" label="Average heartrate [bpm]" type="integer"/>
-    <entity id="title" name="title" label="Title"/>
+    <entity id="heartrate" name="heartrate" label="Average heartrate [bpm]" type="integer" desired="true"/>
+    <entity id="title" name="title" label="Title" required="true"/>
     <entity id="description" name="description" label="Description">
-      <renderer type="textarea"/>
+      <renderer type="textarea" rows="5"/>
     </entity>
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
@@ -69,28 +71,32 @@
 
   <!-- Role -->
   <snippet id="s1">
+    <section label="General">
+    <row>
+      <col><field ref="title"/></col>
+    </row>
     <row>
       <col><field ref="date"/></col>
-      <col><field ref="duration"/></col>
       <col><field ref="sport"/></col>
     </row>
     <row>
+      <col><field ref="duration"/></col>
       <col><field ref="distance"/></col>
       <col><field ref="elevation"/></col>
       <col><field ref="speed"/></col>
+    </row>
+    </section>
+    <section label="">
+    <row>
+      <col width="3"><field ref="rating"/></col>
+      <col width="9"><field ref="description"/></col>
+    </row>
+    </section>
+    <section label="Intensity">
+    <row>
+      <col><field ref="intensity"/></col>
       <col><field ref="heartrate"/></col>
     </row>
-    <row>
-      <col>
-        <row>
-          <col><field ref="title"/></col>
-        </row>
-        <row>
-          <col><field ref="description"/></col>
-        </row>
-      </col>
-      <col><field ref="rating"/></col>
-      <col><field ref="intensity"/></col>
-    </row>
+    </section>
   </snippet>
 </configuration>
