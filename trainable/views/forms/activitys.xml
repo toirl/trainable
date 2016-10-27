@@ -53,6 +53,51 @@
     <entity id="description" name="description" label="Description">
       <renderer type="textarea" rows="5"/>
     </entity>
+    <entity id="temperature" name="temperature" label="Temperatur [C°]" type="float"/>
+    <entity id="wind" name="wind" label="Wind" type="integer">
+      <options>
+        <option value="">not specified</option>
+        <option value="0">No wind at all</option>
+        <option value="1">Light wind</option>
+        <option value="2">Moderate wind</option>
+        <option value="3">Strong wind</option>
+        <option value="4">Almost blown away</option>
+      </options>
+      <renderer type="dropdown"/>
+    </entity>
+    <entity id="weather" name="weather" label="Weather" type="integer">
+      <options>
+        <option value="">not specified</option>
+        <option value="0">Indoor</option>
+        <option value="1">Sunny</option>
+        <option value="2">Light Cloudy</option>
+        <option value="3">Cloudy</option>
+        <option value="4">Light Rain</option>
+        <option value="5">Strong Rain</option>
+        <option value="6">Snow/Ice</option>
+      </options>
+      <renderer type="dropdown"/>
+    </entity>
+    <entity id="sleep" name="sleep" label="Sleep" type="integer">
+      <options>
+        <option value="">not specified</option>
+        <option value="1">very good</option>
+        <option value="2">good</option>
+        <option value="3">normal</option>
+        <option value="4">bad</option>
+        <option value="5">very bad</option>
+      </options>
+      <renderer type="dropdown"/>
+    </entity>
+    <entity id="restheartrate" name="restheartrate" label="Rest Heartrate [bpm]" type="integer"/>
+    <entity id="weigth" name="weigth" label="Weight [kg]" type="float"/>
+    <entity id="pain" name="pain" label="Pain" type="integer" default="0">
+      <options>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </options>
+      <renderer type="radio"/>
+    </entity>
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <snippet ref="create_snippet"/>
@@ -96,6 +141,21 @@
     <row>
       <col><field ref="intensity"/></col>
       <col><field ref="heartrate"/></col>
+    </row>
+    </section>
+    <section label="External Conditions">
+    <row>
+      <col><field ref="weather"/></col>
+      <col><field ref="temperature"/></col>
+      <col><field ref="wind"/></col>
+    </row>
+    </section>
+    <section label="Athlets Bio">
+    <row>
+      <col><field ref="sleep"/></col>
+      <col><field ref="restheartrate"/></col>
+      <col><field ref="weigth"/></col>
+      <col><field ref="pain"/></col>
     </row>
     </section>
   </snippet>
