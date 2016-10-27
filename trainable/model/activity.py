@@ -19,7 +19,24 @@ class Activity(BaseItem, Owned, Base):
     sport = sa.Column('sport', sa.Integer)
     """Which sport was trainined"""
     rating = sa.Column('rating', sa.Integer)
-    """Subjective rating of the training"""
+    """Subjective rating of the training. How well was the trainig?"""
+    intensity = sa.Column('intensity', sa.Integer)
+    """Subjective rating of the training. How intense was the training.
+    Used to calculate the workload of your training. Intensity is
+    calculated using the  The Borg Scale of Perceived Exertion:
+
+        6 - None (Reading a Book)
+        7,8 - Very, Very light (Binding shoes)
+        9,10 - Very light (Easy tasks like folding clothes)
+        11,12 - Fairly Light (Light speed up breathing)
+        13,14 - Somewhat hard (Still can speak)
+        15,16 - Hard (Breating fast)
+        17,18 - Very hard (Highest level of activity you can sustain)
+        19,20 - Very, Very Hard (Maximum, can not maintain this for long time)
+
+    For information on
+    https://www.hsph.harvard.edu/nutritionsource/borg-scale/
+    """
     distance = sa.Column('distance', sa.Integer)
     """Distance in training in meters"""
     elevation = sa.Column('elevation', sa.Integer)

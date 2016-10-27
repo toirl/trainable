@@ -21,6 +21,26 @@
       </options>
       <renderer type="radio" align="vertical"/>
     </entity>
+    <entity id="intensity" name="intensity" label="Persieved Exertion" type="integer">
+      <options>
+        <option value="6">06 - None (Reading a book)</option>
+        <option value="7">07 - Very, Very Light</option>
+        <option value="8">08 - Very, Very Light</option>
+        <option value="9">09 - Very Light (Easy tasks like folding clothes)</option>
+        <option value="10">10 - Very Light</option>
+        <option value="11">11 - Fairly Light (Ligth speedup breathing)</option>
+        <option value="12">12 - Fairly Light</option>
+        <option value="13">13 - Somewhat Hard (Still can speak)</option>
+        <option value="14">14 - Somewhat Hard </option>
+        <option value="15">15 - Hard (Fast breathing)</option>
+        <option value="16">16 - Hard</option>
+        <option value="17">17 - Very Hard (Hightes level you can maintain)</option>
+        <option value="18">18 - Very Hard</option>
+        <option value="19">19 - Very, Very Hard (Maximum, can not maintain this for long</option>
+        <option value="20">20 - Very, Very Hard (Maximum, can not maintain this for long</option>
+      </options>
+      <renderer type="radio" align="vertical"/>
+    </entity>
     <entity id="distance" name="distance" label="Distance [m]" type="integer"/>
     <entity id="elevation" name="elevation" label="Elevation [m]" type="integer"/>
     <entity id="speed" name="speed" label="Average Speed [km/h]">
@@ -70,6 +90,7 @@
         </row>
       </col>
       <col><field ref="rating"/></col>
+      <col><field ref="intensity"/></col>
     </row>
   </snippet>
 </configuration>
