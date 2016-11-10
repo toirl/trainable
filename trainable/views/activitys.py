@@ -12,4 +12,7 @@ from trainable.views.strava import sync_activity
 def syncwithstrava(request):
     """Will update the activity with strava in with all details."""
     request.item = sync_activity(request)
+    _ = request.translate
+    msg = _('The activity was successfully synchronized with Strava')
+    request.session.flash(msg, "success")
     return update(request)
