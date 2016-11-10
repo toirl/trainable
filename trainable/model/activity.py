@@ -76,7 +76,29 @@ class Activity(BaseItem, Owned, Base):
     weight = sa.Column('weigth', sa.Float)
     """Was the activity acomplished under/with pain?"""
 
+    # Streams from Strava. See https://strava.github.io/api/v3/streams/
     heartrate_stream = sa.Column('heartrate_stream', Json)
+    """integer BPM"""
+    time_stream = sa.Column('time_stream', Json)
+    """floats seconds"""
+    latlng_stream = sa.Column('latlng_stream', Json)
+    """floats [latitude, longitude]"""
+    distance_stream = sa.Column('distance_stream', Json)
+    """float meters"""
+    altitude_stream = sa.Column('altitude_stream', Json)
+    """float meters"""
+    velocity_smooth_stream = sa.Column('velocity_smooth_stream', Json)
+    """float meters per second"""
+    cadence_stream = sa.Column('cadence_stream', Json)
+    """integer RPM"""
+    watts_stream = sa.Column('watts_stream', Json)
+    """integer watts"""
+    temp_stream = sa.Column('temp_stream', Json)
+    """integer degrees Celsius"""
+    moving_stream = sa.Column('moving_stream', Json)
+    """boolean"""
+    grade_smooth_stream = sa.Column('grade_smooth_stream', Json)
+    """float percent"""
 
     @property
     def speed(self):
