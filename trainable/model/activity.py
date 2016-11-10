@@ -1,9 +1,23 @@
+import json
 import sqlalchemy as sa
 from ringo.model import Base
 from ringo.model.base import BaseItem
 from ringo.model.mixins import (
     Owned
 )
+
+
+class Json(sa.TypeDecorator):
+
+    impl = sa.String
+
+    def process_bind_param(self, value, dialect):
+        if value is not None:
+            return json.dumps(value)
+
+    def process_result_value(self, value, dialect):
+        if value is not None:
+            return json.loads(value)
 
 
 class Activity(BaseItem, Owned, Base):
@@ -61,6 +75,8 @@ class Activity(BaseItem, Owned, Base):
     """What was the resting heartrate"""
     weight = sa.Column('weigth', sa.Float)
     """Was the activity acomplished under/with pain?"""
+
+    heartrate_stream = sa.Column('heartrate_stream', Json)
 
     @property
     def speed(self):
