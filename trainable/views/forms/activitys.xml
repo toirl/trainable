@@ -112,24 +112,22 @@
   <!-- Create-->
   <snippet id="create_snippet">
     <section label="General">
-      <snippet ref="s1"/>
+      <snippet ref="general"/>
     </section>
     <snippet ref="extra"/>
   </snippet>
   <snippet id="update_snippet">
     <page id="p1" label="General">
-      <snippet ref="s1"/>
+      <snippet ref="general"/>
     </page>
+    <snippet ref="extra"/>
     <page id="p2" label="Evaluation">
       <text>Insert Evaluation</text>
-    </page>
-    <page id="p3" label="Extra data">
-      <snippet ref="extra"/>
     </page>
   </snippet>
 
   <!-- Role -->
-  <snippet id="s1">
+  <snippet id="general">
     <row>
       <col><field ref="title"/></col>
     </row>
