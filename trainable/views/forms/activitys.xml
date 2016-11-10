@@ -103,20 +103,33 @@
     <snippet ref="create_snippet"/>
   </form>
   <form id="update" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
-    <snippet ref="create_snippet"/>
+    <snippet ref="update_snippet"/>
   </form>
   <form id="read" readonly="true">
-    <snippet ref="create_snippet"/>
+    <snippet ref="update_snippet"/>
   </form>
 
   <!-- Create-->
   <snippet id="create_snippet">
-    <snippet ref="s1"/>
+    <section label="General">
+      <snippet ref="s1"/>
+    </section>
+    <snippet ref="extra"/>
+  </snippet>
+  <snippet id="update_snippet">
+    <page id="p1" label="General">
+      <snippet ref="s1"/>
+    </page>
+    <page id="p2" label="Evaluation">
+      <text>Insert Evaluation</text>
+    </page>
+    <page id="p3" label="Extra data">
+      <snippet ref="extra"/>
+    </page>
   </snippet>
 
   <!-- Role -->
   <snippet id="s1">
-    <section label="General">
     <row>
       <col><field ref="title"/></col>
     </row>
@@ -130,19 +143,18 @@
       <col><field ref="elevation"/></col>
       <col><field ref="speed"/></col>
     </row>
-    </section>
-    <section label="">
     <row>
       <col width="3"><field ref="rating"/></col>
       <col width="9"><field ref="description"/></col>
     </row>
-    </section>
     <section label="Intensity">
     <row>
       <col><field ref="intensity"/></col>
       <col><field ref="heartrate"/></col>
     </row>
     </section>
+  </snippet>
+  <snippet id="extra">
     <section label="External Conditions">
     <row>
       <col><field ref="weather"/></col>
