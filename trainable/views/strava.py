@@ -138,9 +138,30 @@ def sync_activity(request):
     activity.description = strava.description
 
     # Activities can have many streams, you can request desired stream types
-    #types = ['time', 'latlng', 'altitude', 'heartrate', 'temp', ]
-    #streams = client.get_activity_streams(activity.strava_id, types=types, resolution='medium')
-    #for stream in streams:
-    #    print stream
-    #    print(streams[stream].data)
+    # 'time', 'latlng', 'altitude', 'heartrate', 'temp'
+    types = ['time', 'latlng', 'distance', 'altitude', 'velocity_smooth',
+             'heartrate', 'cadence', 'watts', 'temp', 'moving', 'grade_smooth']
+    streams = client.get_activity_streams(activity.strava_id, types=types)
+    if "time" in streams:
+        activity.time_stream = streams["time"].data
+    if "latlng" in streams:
+        activity.latlng_stream = streams["latlng"].data
+    if "distance" in streams:
+        activity.distance_stream = streams["distance"].data
+    if "altitude" in streams:
+        activity.altitude_stream = streams["altitude"].data
+    if "velocity_smooth" in streams:
+        activity.velocity_smooth_stream = streams["velocity_smooth"].data
+    if "heartrate" in streams:
+        activity.heartrate_stream = streams["heartrate"].data
+    if "cadence" in streams:
+        activity.cadence_stream = streams["cadence"].data
+    if "watts" in streams:
+        activity.watts_stream = streams["watts"].data
+    if "temp" in streams:
+        activity.temp_stream = streams["temp"].data
+    if "moving" in streams:
+        activity.moving_stream = streams["moving"].data
+    if "grade_smooth" in streams:
+        activity.grade_smoth_stream = streams["grade_smooth"].data
     return activity
