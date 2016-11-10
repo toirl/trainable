@@ -12,7 +12,7 @@ class Activity(BaseItem, Owned, Base):
     id = sa.Column(sa.Integer, primary_key=True)
     strava_id = sa.Column(sa.Integer)
     """Id of the activity on Strava. Primarily used for syncing issues."""
-    date = sa.Column('date', sa.Date)
+    date = sa.Column('date', sa.DateTime)
     """Date of the training"""
     duration = sa.Column('duration', sa.Interval)
     """Duration of the training"""
