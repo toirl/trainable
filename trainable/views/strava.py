@@ -11,6 +11,7 @@ from ringo.lib.imexport import JSONImporter
 from ringo.lib.helpers import serialize
 from ringo.views.base.import_ import _handle_save
 from ringo.views.home import index_view
+from ringo.views.request import get_item_from_request
 from ringo.model.base import get_item_list
 
 from trainable.model.activity import Activity
@@ -126,3 +127,20 @@ def sync(request):
     update_trainable(request)
     log.info("Synced with strava")
     return {}
+
+
+def sync_activity(request):
+    activity = get_item_from_request(request)
+    client = Client(access_token=get_access_token(request))
+    strava = client.get_activity(activity.strava_id)
+
+    # Sync description this is not included in the activity overview.
+    activity.description = strava.description
+
+    # Activities can have many streams, you can request desired stream types
+    #types = ['time', 'latlng', 'altitude', 'heartrate', 'temp', ]
+    #streams = client.get_activity_streams(activity.strava_id, types=types, resolution='medium')
+    #for stream in streams:
+    #    print stream
+    #    print(streams[stream].data)
+    return activity
