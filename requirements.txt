@@ -1,3 +1,4 @@
 ringo
 requests
 stravalib
+ringo_diagram
