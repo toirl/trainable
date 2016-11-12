@@ -6,6 +6,7 @@ from ringo.model.mixins import (
     Owned
 )
 from ringo.lib.helpers import literal
+from ringo_diagram.model import Dataprovider
 
 
 class Json(sa.TypeDecorator):
@@ -113,6 +114,50 @@ class Activity(BaseItem, Owned, Base):
     """boolean"""
     grade_smooth_stream = sa.Column('grade_smooth_stream', Json)
     """float percent"""
+
+    @property
+    def has_streams(self):
+        """Returns True if the activity is completely synced with
+        strava. In this case there are streams available. In this case
+        the time stream is available In this case the time stream is
+        available."""
+        return self.time_stream and len(self.time_stream) > 0
+
+    @property
+    def _has_streams(self):
+        """Workaround for the form to make the information available if
+        the activity has streams."""
+        return self.has_streams
+
+    @property
+    def _heartrate_dataprovider(self):
+        """Dataprovider for BPM"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Heartrate [bpm]")
+        dp.add_series("Heartrate [bpm]", self.heartrate_stream)
+        return dp
+
+    @property
+    def _velocity_dataprovider(self):
+        """Dataprovider for Velocity"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Velocity [m/s]")
+        dp.add_series("Velocity [m/s]", self.velocity_smooth_stream)
+        return dp
+
+    @property
+    def _altitude_dataprovider(self):
+        """Dataprovider for Altitude"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Altitude [m]")
+        dp.add_series("Altitude [m]", self.altitude_stream)
+        return dp
 
     @property
     def speed(self):

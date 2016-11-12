@@ -98,6 +98,18 @@
       </options>
       <renderer type="radio"/>
     </entity>
+    <entity id="has_streams" name="_has_streams">
+      <renderer type="hidden"/>
+    </entity>
+    <entity id="heartrate_dataprovider" name="_heartrate_dataprovider" label="Heartrate">
+      <renderer type="diagram"/>
+    </entity>
+    <entity id="velocity_dataprovider" name="_velocity_dataprovider" label="Velocity">
+      <renderer type="diagram"/>
+    </entity>
+    <entity id="altitude_dataprovider" name="_altitude_dataprovider" label="Altitude">
+      <renderer type="diagram"/>
+    </entity>
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <snippet ref="create_snippet"/>
@@ -122,7 +134,22 @@
     </page>
     <snippet ref="extra"/>
     <page id="p2" label="Evaluation">
-      <text>Insert Evaluation</text>
+      <row>
+        <col><field ref="heartrate"/></col>
+        <col><field ref="speed"/></col>
+        <col><field ref="elevation"/><field ref="has_streams"/></col>
+      </row>
+      <if expr="bool( $_has_streams )">
+        <row>
+          <col><field ref="heartrate_dataprovider"/></col>
+        </row>
+        <row>
+          <col><field ref="velocity_dataprovider"/></col>
+        </row>
+        <row>
+          <col><field ref="altitude_dataprovider"/></col>
+        </row>
+      </if>
     </page>
   </snippet>
 
@@ -138,7 +165,6 @@
     <row>
       <col><field ref="duration"/></col>
       <col><field ref="distance"/></col>
-      <col><field ref="elevation"/></col>
       <col><field ref="speed"/></col>
     </row>
     <row>
@@ -148,7 +174,6 @@
     <section label="Intensity">
     <row>
       <col><field ref="intensity"/></col>
-      <col><field ref="heartrate"/></col>
     </row>
     </section>
   </snippet>
