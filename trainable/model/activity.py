@@ -5,6 +5,7 @@ from ringo.model.base import BaseItem
 from ringo.model.mixins import (
     Owned
 )
+from ringo.lib.helpers import literal
 
 
 class Json(sa.TypeDecorator):
@@ -18,6 +19,19 @@ class Json(sa.TypeDecorator):
     def process_result_value(self, value, dialect):
         if value is not None:
             return json.loads(value)
+
+
+def render_strava_sync_status(request, item, field, tableconfig):
+    _ = request.translate
+    if not item.strava_id:
+        return ""
+    elif not item.time_stream:
+        filename = request.static_path('trainable:static/images/strava_sync.png')
+        title = _("Activity basically synced with strava")
+    else:
+        filename = request.static_path('trainable:static/images/strava_full_sync.png')
+        title = _("Activity completely synced with strava")
+    return literal('<img src="{}" title="{}"/>'.format(filename, title))
 
 
 class Activity(BaseItem, Owned, Base):
