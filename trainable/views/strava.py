@@ -122,7 +122,7 @@ def update_strava(request):
 def sync(request):
     """Will sync the trainings with the workout stored on strava"""
     # Update Strava
-    update_strava(request)
+    # update_strava(request)
     # Update trainable
     update_trainable(request)
     log.info("Synced with strava")
