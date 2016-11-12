@@ -15,7 +15,7 @@ import sqlalchemy as sa
 
 
 INSERTS = """
-INSERT INTO modules (id, name, description, label, label_plural, clazzpath, display, str_repr, uuid) VALUES (1000, 'activitys', '', 'Activity', 'Activities', 'trainable.model.activity.Activity', 'header-menu', '%s|id', 'aa65cb6d-3d61-43f1-87f1-23e6e00b01c7');
+INSERT INTO modules (id, name, description, label, label_plural, clazzpath, display, str_repr, uuid) VALUES (1000, 'activitys', '', 'Activity', 'Activities', 'trainable.model.activity.Activity', 'header-menu', '%s|title', 'aa65cb6d-3d61-43f1-87f1-23e6e00b01c7');
 INSERT INTO actions (id, mid, uuid, name, url, icon, bundle, description, display, permission) VALUES (39, 1000, 'cfdb1718-3b3b-43e1-9d54-1681cac5fce4', 'List', 'list', 'icon-list-alt', 'False', '', '', '');
 INSERT INTO actions (id, mid, uuid, name, url, icon, bundle, description, display, permission) VALUES (40, 1000, '905beba2-2c1b-4976-9ec5-75fe054c1947', 'Create', 'create', 'icon-plus', 'False', '', '', '');
 INSERT INTO actions (id, mid, uuid, name, url, icon, bundle, description, display, permission) VALUES (41, 1000, 'db61f094-26c3-4930-a630-f94cd8eb1cf9', 'Read', 'read/{id}', 'icon-eye-open', 'False', '', '', '');
