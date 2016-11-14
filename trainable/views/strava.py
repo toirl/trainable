@@ -135,7 +135,8 @@ def sync_activity(request):
     strava = client.get_activity(activity.strava_id)
 
     # Sync description this is not included in the activity overview.
-    activity.description = strava.description
+    if strava.description:
+        activity.description = strava.description
 
     # Activities can have many streams, you can request desired stream types
     # 'time', 'latlng', 'altitude', 'heartrate', 'temp'
