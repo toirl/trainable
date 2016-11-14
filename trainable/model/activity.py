@@ -160,6 +160,26 @@ class Activity(BaseItem, Owned, Base):
         return dp
 
     @property
+    def _cadence_dataprovider(self):
+        """Dataprovider for Cadence"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Cadence [rpm]")
+        dp.add_series("Cadence [m]", self.cadence_stream)
+        return dp
+
+    @property
+    def _watts_dataprovider(self):
+        """Dataprovider for Watts"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Power [W]")
+        dp.add_series("Power [W]", self.watts_stream)
+        return dp
+
+    @property
     def speed(self):
         """Returns the averange speed in this training"""
         if self.distance and self.duration:

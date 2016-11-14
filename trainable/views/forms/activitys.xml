@@ -110,6 +110,12 @@
     <entity id="altitude_dataprovider" name="_altitude_dataprovider" label="Altitude">
       <renderer type="diagram"/>
     </entity>
+    <entity id="cadence_dataprovider" name="_cadence_dataprovider" label="Cadence">
+      <renderer type="diagram"/>
+    </entity>
+    <entity id="watts_dataprovider" name="_watts_dataprovider" label="Watts">
+      <renderer type="diagram"/>
+    </entity>
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <snippet ref="create_snippet"/>
@@ -141,13 +147,19 @@
       </row>
       <if expr="bool( $_has_streams )">
         <row>
-          <col><field ref="heartrate_dataprovider"/></col>
+          <col><field ref="altitude_dataprovider"/></col>
         </row>
         <row>
           <col><field ref="velocity_dataprovider"/></col>
         </row>
         <row>
-          <col><field ref="altitude_dataprovider"/></col>
+          <col><field ref="heartrate_dataprovider"/></col>
+        </row>
+        <row>
+          <col><field ref="cadence_dataprovider"/></col>
+        </row>
+        <row>
+          <col><field ref="watts_dataprovider"/></col>
         </row>
       </if>
     </page>
