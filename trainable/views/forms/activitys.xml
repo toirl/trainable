@@ -102,7 +102,7 @@
       <renderer type="hidden"/>
     </entity>
     <entity id="map" name="_map" label="">
-      <renderer type="map"/>
+      <renderer type="map" routename="mapdata"/>
     </entity>
     <entity id="heartrate_dataprovider" name="_heartrate_dataprovider" label="Heartrate">
       <renderer type="diagram" sync="true"/>

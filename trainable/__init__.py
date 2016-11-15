@@ -4,8 +4,10 @@ from pyramid.i18n import TranslationStringFactory
 from ringo.lib.sql.db import setup_db_session, setup_db_engine
 from ringo.model import Base
 from ringo.config import setup_modules
+from ringo.resources import get_resource_factory
 from ringo.lib.i18n import translators
 from trainable.model import extensions
+from trainable.model.activity import Activity
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -30,3 +32,5 @@ def includeme(config):
                            cache_max_age=3600)
     config.add_route("syncstrava", "/strava/sync")
     config.add_route("authstrava", "/strava/authorisation")
+    config.add_route("mapdata", "/activity/mapdata/{id}",
+                     factory=get_resource_factory(Activity))

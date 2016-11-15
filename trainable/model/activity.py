@@ -125,11 +125,13 @@ class Activity(BaseItem, Owned, Base):
 
     @property
     def coord_lat(self):
-        return self.latlng_stream[0][0]
+        if self.latlng_stream and len(self.latlng_stream) > 0:
+            return self.latlng_stream[0][0]
 
     @property
     def coord_lon(self):
-        return self.latlng_stream[0][1]
+        if self.latlng_stream and len(self.latlng_stream) > 0:
+            return self.latlng_stream[0][1]
 
     @property
     def _has_streams(self):
