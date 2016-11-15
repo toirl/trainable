@@ -124,6 +124,14 @@ class Activity(BaseItem, Owned, Base):
         return self.time_stream and len(self.time_stream) > 0
 
     @property
+    def coord_lat(self):
+        return self.latlng_stream[0][0]
+
+    @property
+    def coord_lon(self):
+        return self.latlng_stream[0][1]
+
+    @property
     def _has_streams(self):
         """Workaround for the form to make the information available if
         the activity has streams."""

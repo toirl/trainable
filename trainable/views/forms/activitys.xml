@@ -101,6 +101,9 @@
     <entity id="has_streams" name="_has_streams">
       <renderer type="hidden"/>
     </entity>
+    <entity id="map" name="_map" label="">
+      <renderer type="map"/>
+    </entity>
     <entity id="heartrate_dataprovider" name="_heartrate_dataprovider" label="Heartrate">
       <renderer type="diagram" sync="true"/>
     </entity>
@@ -145,6 +148,9 @@
         <col><field ref="speed"/></col>
         <col><field ref="elevation"/><field ref="has_streams"/></col>
       </row>
+        <row>
+          <col><field ref="map"/></col>
+        </row>
       <if expr="bool( $_has_streams )">
         <row>
           <col><field ref="altitude_dataprovider"/></col>
