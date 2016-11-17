@@ -105,19 +105,19 @@
       <renderer type="map" routename="mapdata"/>
     </entity>
     <entity id="heartrate_dataprovider" name="_heartrate_dataprovider" label="Heartrate">
-      <renderer type="diagram" sync="true"/>
+      <renderer type="synceddiagram" sync="true"/>
     </entity>
     <entity id="velocity_dataprovider" name="_velocity_dataprovider" label="Velocity">
-      <renderer type="diagram" sync="true"/>
+      <renderer type="synceddiagram" sync="true"/>
     </entity>
     <entity id="altitude_dataprovider" name="_altitude_dataprovider" label="Altitude">
-      <renderer type="diagram" sync="true"/>
+      <renderer type="synceddiagram" sync="true"/>
     </entity>
     <entity id="cadence_dataprovider" name="_cadence_dataprovider" label="Cadence">
-      <renderer type="diagram" sync="true"/>
+      <renderer type="synceddiagram" sync="true"/>
     </entity>
     <entity id="watts_dataprovider" name="_watts_dataprovider" label="Watts">
-      <renderer type="diagram" sync="true"/>
+      <renderer type="synceddiagram" sync="true"/>
     </entity>
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
