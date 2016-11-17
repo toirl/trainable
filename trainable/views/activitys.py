@@ -20,10 +20,14 @@ def syncwithstrava(request):
     return update(request)
 
 def a2gj(item):
+    x2coord = {}
+    for num, distance in enumerate(item.distance_stream):
+        x2coord[distance] = [item.latlng_stream[num][0], item.latlng_stream[num][1]]
+
     return [{
         "type": "Feature",
         "properties": {
-            "id": item.id
+            "x2coordmap": x2coord
         },
         "geometry": {
             "type": "LineString",
