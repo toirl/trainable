@@ -32,7 +32,6 @@ nosetests.xml
 test-data
 test.log
 *.log
-*.ini
 
 # Translations
 *.mo
