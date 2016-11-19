@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import os
 import pkg_resources
@@ -27,4 +28,3 @@ class ActivityDiagramRenderer(FieldRenderer):
         return values
 
 renderers['synceddiagram'] = ActivityDiagramRenderer
-# -*- coding: utf-8 -*-
