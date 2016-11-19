@@ -20,7 +20,7 @@
         <option value="4">bad</option>
         <option value="5">very bad</option>
       </options>
-      <renderer type="radio" align="vertical"/>
+      <renderer type="dropdown"/>
     </entity>
     <entity id="intensity" name="intensity" label="Persieved Exertion" type="integer" required="true">
       <options>
@@ -50,7 +50,7 @@
     </entity>
     <entity id="heartrate" name="heartrate" label="Average heartrate [bpm]" type="integer" desired="true"/>
     <entity id="title" name="title" label="Title" required="true"/>
-    <entity id="description" name="description" label="Description">
+    <entity id="description" name="description" label="Description" readonly="true">
       <renderer type="textarea" rows="5"/>
     </entity>
     <entity id="temperature" name="temperature" label="Temperatur [C°]" type="float"/>
@@ -137,7 +137,59 @@
     </section>
     <snippet ref="extra"/>
   </snippet>
+
   <snippet id="update_snippet">
+      <row>
+        <col width="8">
+          <snippet ref="mapdiagram"/>
+        </col>
+        <col width="4">
+          <row>
+            <col><field ref="description"/></col>
+          </row>
+          <row>
+            <col><field ref="intensity"/></col>
+          </row>
+          <row>
+            <col><field ref="rating"/></col>
+            <col><field ref="pain"/></col>
+          </row>
+          <row>
+          </row>
+          <row>
+            <col><field ref="weather"/></col>
+            <col><field ref="temperature"/></col>
+          </row>
+          <row>
+            <col><field ref="sleep"/></col>
+            <col><field ref="restheartrate"/></col>
+          </row>
+        </col>
+      </row>
+  </snippet>
+
+  <snippet id="mapdiagram">
+    <row>
+      <col><field ref="map"/></col>
+    </row>
+    <row>
+      <col><field ref="altitude_dataprovider"/></col>
+    </row>
+    <row>
+      <col><field ref="velocity_dataprovider"/></col>
+    </row>
+    <row>
+      <col><field ref="heartrate_dataprovider"/></col>
+    </row>
+    <row>
+      <col><field ref="cadence_dataprovider"/></col>
+    </row>
+    <row>
+      <col><field ref="watts_dataprovider"/></col>
+    </row>
+  </snippet>
+
+  <snippet id="update_snippetold">
     <page id="p1" label="General">
       <snippet ref="general"/>
     </page>
