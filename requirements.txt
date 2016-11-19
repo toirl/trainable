@@ -1,4 +1,4 @@
 ringo
 requests
 stravalib
--e git+https://github.com/ringo-framework/ringo_diagram#egg=ringo_diagram
+-e git+http://github.com/ringo-framework/ringo_diagram#egg=ringo_diagram
