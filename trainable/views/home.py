@@ -12,6 +12,7 @@ def trainable_index_view(request):
         client_id = request.user.profile[0].strava_client_id
         redirect_uri = request.route_url("authstrava")
         url = client.authorization_url(client_id=client_id,
-                                       redirect_uri=redirect_uri)
+                                       redirect_uri=redirect_uri,
+                                       scope="view_private")
         values["strava_auth_url"] = url
     return values
