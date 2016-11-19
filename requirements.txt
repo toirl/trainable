@@ -1,4 +1,4 @@
 ringo
 requests
 stravalib
-ringo_diagram
+-e git://github.com/ringo-framework/ringo_diagram
