@@ -21,6 +21,9 @@ class ActivityDiagramRenderer(FieldRenderer):
         FieldRenderer.__init__(self, field, translate)
         self.template = template_lookup.get_template("internal/diagramfield.mako")
 
+    def _render_label(self):
+        return ""
+
     def _get_template_values(self):
         values = FieldRenderer._get_template_values(self)
         values['request'] = self._field._form._request
