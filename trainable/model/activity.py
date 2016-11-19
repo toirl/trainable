@@ -116,6 +116,11 @@ class Activity(BaseItem, Owned, Base):
     """float percent"""
 
     @property
+    def watts_per_kg(self):
+        if self.weight and self.watts_stream:
+            return round((sum(self.watts_stream)/len(self.watts_stream))/self.weight, 3)
+
+    @property
     def has_streams(self):
         """Returns True if the activity is completely synced with
         strava. In this case there are streams available. In this case
