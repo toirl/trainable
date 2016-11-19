@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
   <source>
-    <entity id="date" name="date" label="Date" type="date" required="true"/>
-    <entity id="duration" name="duration" label="Duration" type="interval" required="true"/>
-    <entity id="sport" name="sport" label="Sport" type="integer" required="true">
+    <entity id="date" name="date" label="Date" type="date"/>
+    <entity id="duration" name="duration" label="Duration" type="interval"/>
+    <entity id="sport" name="sport" label="Sport" type="integer">
       <options>
         <option value="1">Running</option>
         <option value="2">Cycling</option>
         <option value="3">Swimming</option>
       </options>
-      <renderer type="radio"/>
+      <renderer type="hidden"/>
     </entity>
     <entity id="rating" name="rating" label="Rating" type="integer" desired="true">
       <options>
@@ -43,13 +43,13 @@
       </options>
       <renderer type="dropdown" align="vertical"/>
     </entity>
-    <entity id="distance" name="distance" label="Distance [m]" type="integer" required="true"/>
+    <entity id="distance" name="distance" label="Distance [m]" type="integer"/>
     <entity id="elevation" name="elevation" label="Elevation [m]" type="integer"/>
     <entity id="speed" name="speed" label="Average Speed [km/h]">
       <renderer type="info"/>
     </entity>
     <entity id="heartrate" name="heartrate" label="Average heartrate [bpm]" type="integer" desired="true"/>
-    <entity id="title" name="title" label="Title" required="true"/>
+    <entity id="title" name="title" label="Title"/>
     <entity id="description" name="description" label="Description" readonly="true">
       <renderer type="textarea" rows="5"/>
     </entity>
@@ -90,7 +90,7 @@
       <renderer type="dropdown"/>
     </entity>
     <entity id="restheartrate" name="restheartrate" label="Rest Heartrate [bpm]" type="integer"/>
-    <entity id="weigth" name="weigth" label="Weight [kg]" type="float"/>
+    <entity id="weigth" name="weight" label="Weight [kg]" type="float"/>
     <entity id="pain" name="pain" label="Pain" type="integer" default="0">
       <options>
         <option value="0">No</option>
@@ -103,6 +103,9 @@
     </entity>
     <entity id="map" name="_map" label="">
       <renderer type="map" routename="mapdata"/>
+    </entity>
+    <entity id="infobox" name="_info" label="">
+      <renderer type="infobox"/>
     </entity>
     <entity id="heartrate_dataprovider" name="_heartrate_dataprovider" label="Heartrate">
       <renderer type="synceddiagram" sync="true"/>
@@ -144,26 +147,31 @@
           <snippet ref="mapdiagram"/>
         </col>
         <col width="4">
-          <row>
-            <col><field ref="description"/></col>
-          </row>
-          <row>
-            <col><field ref="intensity"/></col>
-          </row>
-          <row>
-            <col><field ref="rating"/></col>
-            <col><field ref="pain"/></col>
-          </row>
-          <row>
-          </row>
-          <row>
-            <col><field ref="weather"/></col>
-            <col><field ref="temperature"/></col>
-          </row>
-          <row>
-            <col><field ref="sleep"/></col>
-            <col><field ref="restheartrate"/></col>
-          </row>
+          <section label="Stats">
+            <row>
+              <col><field ref="infobox"/></col>
+            </row>
+          </section>
+          <section label="Additional Info">
+            <row>
+              <col><field ref="sport"/><field ref="intensity"/></col>
+              <col><field ref="rating"/></col>
+            </row>
+            <row>
+              <col><field ref="weigth"/></col>
+              <col><field ref="restheartrate"/></col>
+            </row>
+            <row>
+              <col><field ref="pain"/></col>
+              <col><field ref="sleep"/></col>
+            </row>
+            <row>
+            </row>
+            <row>
+              <col><field ref="weather"/></col>
+              <col><field ref="temperature"/></col>
+            </row>
+          </section>
         </col>
       </row>
   </snippet>
