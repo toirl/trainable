@@ -66,15 +66,6 @@
             m
           </td>
         </tr>
-        <tr>
-          <td>
-            ${"Work"}
-          </td>
-          <td>
-          </td>
-          <td>
-          </td>
-        </tr>
         % if activity.watts_per_kg:
         <tr>
           <td>
