@@ -4,10 +4,7 @@
             {"name": "date", "label": "Date"},
             {"name": "title", "label": "Title"},
             {"name": "sport", "label": "Sport", "expand": true},
-            {"name": "distance", "label": "Distance [m]"},
-            {"name": "speed", "label": "Averange Speed [km/h]"},
-            {"name": "rating", "label": "Rating", "expand": true},
-            {"name": "strava_id", "label": "Strava", "renderer": "trainable.model.activity.render_strava_sync_status"}
+            {"name": "distance", "label": "Distance [m]"}
         ],
         "settings": {
           "default-sort-column": "date",
