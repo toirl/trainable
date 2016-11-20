@@ -38,10 +38,10 @@
     <div class="col-md-4">
       <center>
       % if activity.sport == 1:
-        <h4>${_("Speed")}</h4>
+        <h4>${_("Pace")}</h4>
         ${activity.speed}
       % else:
-        <h4>${_("Pace")}</h4>
+        <h4>${_("Speed")}</h4>
         ${activity.speed}<br/><small>[km/h]</small>
       % endif
       </center>
