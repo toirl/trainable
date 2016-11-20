@@ -57,17 +57,17 @@ function addDataToMap(data, map) {
     "opacity": 0.9
   };
 
-  var path = data.data[0];
-  var scoord = data.data[1].geometry.coordinates
-  var ecoord = data.data[2].geometry.coordinates;
-
-  /* Put custom start and end marker on the map */
-  L.marker([scoord[1], scoord[0]], {icon: startPosIcon}).addTo(dataLayer);
-  L.marker([ecoord[1], ecoord[0]], {icon: endPosIcon}).addTo(dataLayer);
 
   /* Put track on the map */
+  var path = data.data[0];
   var dataLayer = L.geoJSON(path, {style: myStyle});
   dataLayer.addTo(map);
+
+  /* Put custom start and end marker on the map */
+  var scoord = data.data[1].geometry.coordinates
+  var ecoord = data.data[2].geometry.coordinates;
+  L.marker([scoord[1], scoord[0]], {icon: startPosIcon}).addTo(dataLayer);
+  L.marker([ecoord[1], ecoord[0]], {icon: endPosIcon}).addTo(dataLayer);
 
   /* Fit map to the track */
   map.fitBounds(dataLayer.getBounds());
