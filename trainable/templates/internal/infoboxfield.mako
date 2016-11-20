@@ -1,21 +1,23 @@
 ## -*- coding: utf-8 -*-
-<% activity = field._form._item %>
-<%def name="minmaxavg(label, unit, stream)">
+<% 
+from trainable.model.activity import velocity2pace
+activity = field._form._item %>
+<%def name="minmaxavg(label, unit, stream, converter)">
 % if stream:
 <tr>
   <td>
     ${label}
   </td>
-  <td>
-    ${min(stream)}
+  <td class="text-right">
+    ${converter(min(stream))}
+  </td class="text-right">
+  <td class="text-right">
+    ${converter(max(stream))}
   </td>
-  <td>
-    ${max(stream)}
+  <td class="text-right">
+    ${converter(round(sum(stream) / len(stream), 2))}
   </td>
-  <td>
-    ${round(sum(stream) / len(stream), 2)}
-  </td>
-  <td>
+  <td class="text-right">
     ${unit}
   </td>
 </tr>
@@ -39,7 +41,7 @@
       <center>
       % if activity.sport == 1:
         <h4>${_("Pace")}</h4>
-        ${activity.speed}
+        ${activity.get_pace(1000)}<br/><small>[min/km]</small>
       % else:
         <h4>${_("Speed")}</h4>
         ${activity.speed}<br/><small>[km/h]</small>
@@ -94,17 +96,25 @@
       <table class="table table-condesed">
         <tr>
           <th></th>
-          <th>Min</th>
-          <th>Max</th>
-          <th>Avg</th>
+          <th class="text-right">Min</th>
+          <th class="text-right">Max</th>
+          <th class="text-right">Avg</th>
           <th></th>
         </tr>
-        ${minmaxavg(_('Altitude'), "m", activity.altitude_stream)}
-        ${minmaxavg(_('Speed'), "m/s", activity.velocity_smooth_stream)}
-        ${minmaxavg(_('Heartrate'), "bpm", activity.heartrate_stream)}
-        ${minmaxavg(_('Cadence'), "rpm", activity.cadence_stream)}
-        ${minmaxavg(_('Power'), "W", activity.watts_stream)}
-        ${minmaxavg(_('Grade'), "%", activity.grade_smooth_stream)}
+        ${minmaxavg(_('Altitude'), "m", activity.altitude_stream, lambda x: x)}
+        % if activity.sport == 1:
+          ${minmaxavg(_('Pace'), "min/km", activity.velocity_smooth_stream, lambda x: velocity2pace(x, 1000))}
+        % else:
+          ${minmaxavg(_('Speed'), "m/s", activity.velocity_smooth_stream, lambda x: x)}
+        % endif
+        ${minmaxavg(_('Heartrate'), "bpm", activity.heartrate_stream, lambda x: x)}
+        % if activity.sport == 1:
+          ${minmaxavg(_('Cadence (1L)'), "spm", activity.cadence_stream, lambda x: x)}
+        % else:
+          ${minmaxavg(_('Cadence'), "rpm", activity.cadence_stream, lambda x: x)}
+        % endif
+        ${minmaxavg(_('Power'), "W", activity.watts_stream, lambda x: x)}
+        ${minmaxavg(_('Grade'), "%", activity.grade_smooth_stream, lambda x: x)}
       </table>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import json
+import datetime
 import sqlalchemy as sa
 from ringo.model import Base
 from ringo.model.base import BaseItem
@@ -33,6 +34,15 @@ def render_strava_sync_status(request, item, field, tableconfig):
         filename = request.static_path('trainable:static/images/strava_full_sync.png')
         title = _("Activity completely synced with strava")
     return literal('<img src="{}" title="{}"/>'.format(filename, title))
+
+
+
+def velocity2pace(mps, distance=1000):
+    # calculate seconds per distance
+    if not mps:
+        return ""
+    spd = distance / mps
+    return str(datetime.timedelta(seconds=spd)).split(".")[0]
 
 
 class Activity(BaseItem, Owned, Base):
@@ -170,6 +180,7 @@ class Activity(BaseItem, Owned, Base):
         dp.add_series("Heartrate [bpm]", self.heartrate_stream)
         return dp
 
+
     @property
     def _velocity_dataprovider(self):
         """Dataprovider for Velocity"""
@@ -178,6 +189,16 @@ class Activity(BaseItem, Owned, Base):
                           "Distance [m]",
                           "Velocity [m/s]")
         dp.add_series("Velocity [m/s]", self.velocity_smooth_stream)
+        return dp
+
+    @property
+    def _pace_dataprovider(self):
+        """Dataprovider for Pace"""
+        dp = Dataprovider(self.distance_stream,
+                          "",
+                          "Distance [m]",
+                          "Pace [km/min]")
+        dp.add_series("Pace [km/min]", self.velocity_smooth_stream)
         return dp
 
     @property
@@ -221,4 +242,13 @@ class Activity(BaseItem, Owned, Base):
             # calculate meters per hour
             kmph = mph / 1000
             return round(kmph, 2)
+        return ""
+
+    def get_pace(self, distance=1000):
+        """Returns the averange pace in this training. Time it takes to
+        run the given distance in meters."""
+        if self.distance and self.duration:
+            # calculate meters per second
+            mps = float(self.distance) / self.duration.seconds
+            return velocity2pace(mps, distance)
         return ""
