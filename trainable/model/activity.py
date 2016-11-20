@@ -141,11 +141,11 @@ class Activity(BaseItem, Owned, Base):
         else:
             img_url = request.static_path('trainable:static/images/sport_icons/swimming.png')
         out = []
-        out.append('<img src="{}" style="width:55px;"/> '.format(img_url))
-        out.append("{} ".format(self.title))
-        out.append("<small>")
-        out.append("{}".format(self.date))
-        out.append("</small>")
+        out.append(u'<img src="{}" style="width:55px;"/> '.format(img_url))
+        out.append(u"{} ".format(self.title))
+        out.append(u"<small>")
+        out.append(u"{}".format(self.date))
+        out.append(u"</small>")
         return literal("".join(out))
 
     @property
