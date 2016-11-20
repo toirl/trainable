@@ -87,13 +87,42 @@ def get_new_and_updated_activities(request, trainings, activities):
         print(a.upload_id)
 
 
-def update_trainable(request):
+def update_trainable(request, sport, start, end):
     """Will update and create new trainable entries based on the data on
     strava."""
     client = Client(access_token=get_access_token(request))
     activities = []
-    for activity in client.get_activities():
-        activities.append(strava2trainable(activity))
+    count_synced = 0
+    count_ignored = 0
+    for sactivity in client.get_activities():
+        activity = strava2trainable(sactivity)
+        # Filter activities based on settings.
+        if not sport.find(str(activity["sport"])) > -1:
+            print("Sport")
+            count_ignored += 1
+            continue
+        if start and activity["date"] < str(start):
+            print("Start")
+            count_ignored += 1
+            continue
+        if end and activity["date"] > str(end):
+            print("End")
+            count_ignored += 1
+            continue
+        else:
+            print("Added")
+            count_synced += 1
+            activities.append(activity)
+
+    _ = request.translate
+    msg_ignored = _("Ingnored {} activities on sync because of filter settings").format(count_ignored)
+    msg_synced = _("Synced {} activities").format(count_synced)
+
+    log.info(msg_ignored)
+    log.info(msg_synced)
+    request.session.flash(msg_synced, "success")
+    request.session.flash(msg_ignored, "info")
+
     importer = JSONImporter(Activity)
     items = importer.perform(json.dumps(activities),
                              request.user, load_key="strava_id")
@@ -119,12 +148,12 @@ def update_strava(request):
             activity.strava_id = strava.id
 
 
-def sync(request):
+def sync(request, sport, start, end):
     """Will sync the trainings with the workout stored on strava"""
     # Update Strava
     # update_strava(request)
     # Update trainable
-    update_trainable(request)
+    update_trainable(request, sport, start, end)
     log.info("Synced with strava")
     return {}
 

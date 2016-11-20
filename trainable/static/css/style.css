@@ -1,3 +1,32 @@
 .maprenderer {
 	height: 300px;
 }
+
+.card {
+  margin: 5px;
+  box-shadow: 2px 2px 5px #888888;
+}
+
+.card .card-header {
+  border-bottom: 1px solid #eee;
+  padding: 4px;
+  font-size: larger;
+}
+
+.card-header img {
+  max-height: 50px;
+}
+
+.card-header {
+  color: #fff;
+  background-color: #ed4611;
+}
+
+.card .card-content {
+  padding: 8px;
+}
+
+.card .card-buttons {
+  border-top: 1px solid #eee;
+  padding: 4px;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+  <source>
+    <!-- Define different entity types -->
+    <entity id="sport" name="sport" label="Sport" value="[1,2,3]">
+      <renderer type="checkbox"/>
+      <options>
+        <option value="1">Running</option>
+        <option value="2">Cycling</option>
+        <option value="3">Swimming</option>
+      </options>
+    </entity>
+    <entity id="start" name="start" label="From" type="date"/>
+    <entity id="end" name="end" label="To" type="date"/>
+  </source>
+  <form id="syncform" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
+    <row>
+      <col><field ref="sport"></field></col>
+    </row>
+    <row>
+      <col><field ref="start"></field></col>
+      <col><field ref="end"></field></col>
+    </row>
+    <buttons>
+      <button type="submit" value="sync">Sync</button>
+    </buttons>
+  </form>
+</configuration>
