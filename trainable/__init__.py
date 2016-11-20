@@ -1,3 +1,4 @@
+import sys
 from pyramid.config import Configurator
 from pyramid.i18n import TranslationStringFactory
 
@@ -12,6 +13,10 @@ from trainable.model.activity import Activity
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    if not settings.get("strava.client_secret"):
+        print("Error. Client secret to access the Strava API is not configured.\n"
+              "See documentation for more details.")
+        sys.exit(1)
     engine = setup_db_engine(settings)
     setup_db_session(engine)
     Base.metadata.bind = engine
