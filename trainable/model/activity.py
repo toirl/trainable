@@ -115,6 +115,22 @@ class Activity(BaseItem, Owned, Base):
     grade_smooth_stream = sa.Column('grade_smooth_stream', Json)
     """float percent"""
 
+    def render(self, request):
+        # https://www.iconfinder.com/iconsets/sports-android-l-lollipop-icon-pack
+        if self.sport == 1:
+            img_url = request.static_path('trainable:static/images/sport_icons/running.png')
+        elif self.sport == 2:
+            img_url = request.static_path('trainable:static/images/sport_icons/regular_biking.png')
+        else:
+            img_url = request.static_path('trainable:static/images/sport_icons/swimming.png')
+        out = []
+        out.append('<img src="{}" style="width:55px;"/> '.format(img_url))
+        out.append("{} ".format(self.title))
+        out.append("<small>")
+        out.append("{}".format(self.date))
+        out.append("</small>")
+        return literal("".join(out))
+
     @property
     def watts_per_kg(self):
         if self.weight and self.watts_stream:
