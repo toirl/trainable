@@ -36,13 +36,20 @@ def render_strava_sync_status(request, item, field, tableconfig):
     return literal('<img src="{}" title="{}"/>'.format(filename, title))
 
 
-
 def velocity2pace(mps, distance=1000):
     # calculate seconds per distance
     if not mps:
         return ""
     spd = distance / mps
     return str(datetime.timedelta(seconds=spd)).split(".")[0]
+
+
+def velocity2speed(mps, distance=1000):
+    # calculate meters per hour
+    mph = mps * 60 * 60
+    # calculate meters per hour
+    dph = mph / distance
+    return round(dph, 2)
 
 
 class Activity(BaseItem, Owned, Base):
@@ -237,11 +244,7 @@ class Activity(BaseItem, Owned, Base):
         if self.distance and self.duration:
             # calculate meters per second
             mps = float(self.distance) / self.duration.seconds
-            # calculate meters per hour
-            mph = mps * 60 * 60
-            # calculate meters per hour
-            kmph = mph / 1000
-            return round(kmph, 2)
+            return velocity2speed(mps, 1000)
         return ""
 
     def get_pace(self, distance=1000):

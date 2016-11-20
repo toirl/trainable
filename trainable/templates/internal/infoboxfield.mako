@@ -1,6 +1,6 @@
 ## -*- coding: utf-8 -*-
 <% 
-from trainable.model.activity import velocity2pace
+from trainable.model.activity import velocity2pace, velocity2speed
 activity = field._form._item %>
 <%def name="minmaxavg(label, unit, stream, converter)">
 % if stream:
@@ -105,7 +105,7 @@ activity = field._form._item %>
         % if activity.sport == 1:
           ${minmaxavg(_('Pace'), "min/km", activity.velocity_smooth_stream, lambda x: velocity2pace(x, 1000))}
         % else:
-          ${minmaxavg(_('Speed'), "m/s", activity.velocity_smooth_stream, lambda x: x)}
+          ${minmaxavg(_('Speed'), "km/h", activity.velocity_smooth_stream, lambda x: velocity2speed(x, 1000))}
         % endif
         ${minmaxavg(_('Heartrate'), "bpm", activity.heartrate_stream, lambda x: x)}
         % if activity.sport == 1:
