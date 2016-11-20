@@ -55,6 +55,7 @@
   <div class="row">
     <div class="col-md-12">
       <table class="table table-condesed">
+        % if activity.elevation:
         <tr>
           <td>
             ${"Total elevation"}
@@ -66,6 +67,7 @@
             m
           </td>
         </tr>
+        % endif
         % if activity.watts_per_kg:
         <tr>
           <td>
