@@ -97,7 +97,7 @@ def update_trainable(request, sport, start, end):
     for sactivity in client.get_activities():
         activity = strava2trainable(sactivity)
         # Filter activities based on settings.
-        if not sport.find(str(activity["sport"])) > -1:
+        if str(activity["sport"]) not in sport:
             print("Sport")
             count_ignored += 1
             continue
