@@ -30,4 +30,37 @@ class InfoboxRenderer(FieldRenderer):
         values['h'] = ringo.lib.helpers
         return values
 
+
+class MapRenderer(FieldRenderer):
+    """Maprenderer for the map on the activity page"""
+    def __init__(self, field, translate):
+        """@todo: to be defined"""
+        FieldRenderer.__init__(self, field, translate)
+        self.template = template_lookup.get_template("internal/mapfield.mako")
+
+    def _get_template_values(self):
+        values = FieldRenderer._get_template_values(self)
+        values['request'] = self._field._form._request
+        values['h'] = ringo.lib.helpers
+        return values
+
+
+class ActivityDiagramRenderer(FieldRenderer):
+    """Custom renderer to render digrams which are synced to the map"""
+    def __init__(self, field, translate):
+        """@todo: to be defined"""
+        FieldRenderer.__init__(self, field, translate)
+        self.template = template_lookup.get_template("internal/diagramfield.mako")
+
+    def _render_label(self):
+        return ""
+
+    def _get_template_values(self):
+        values = FieldRenderer._get_template_values(self)
+        values['request'] = self._field._form._request
+        values['h'] = ringo.lib.helpers
+        return values
+
+renderers['synceddiagram'] = ActivityDiagramRenderer
+renderers['map'] = MapRenderer
 renderers['infobox'] = InfoboxRenderer
