@@ -83,6 +83,9 @@ class Activity(BaseItem, Owned, Base):
     For information on
     https://www.hsph.harvard.edu/nutritionsource/borg-scale/
     """
+    commute = sa.Column('commute', sa.Boolean)
+    """True if the activity is a commute ride. Only relevant in
+    connection with rides."""
     distance = sa.Column('distance', sa.Integer)
     """Distance in training in meters"""
     elevation = sa.Column('elevation', sa.Integer)
