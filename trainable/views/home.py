@@ -5,7 +5,7 @@ from formbar.config import Config, load
 from formbar.form import Form
 
 from ringo.views.home import index_view
-from ringo.lib.form import get_path_to_form_config
+from ringo.lib.form import get_path_to_form_config, get_eval_url
 
 from trainable.views.strava import sync
 
@@ -24,7 +24,7 @@ def trainable_index_view(request):
         config = Config(load(get_path_to_form_config('strava.xml')))
         form_config = config.get_form('syncform')
         form = Form(form_config, csrf_token=request.session.get_csrf_token(),
-                    translate=_, locale="de")
+                    translate=_, locale="de", eval_url=get_eval_url())
 
         if request.POST and form.validate(request.params):
             sync(request, form.data.get("sport"), form.data.get("start"), form.data.get("end"))
