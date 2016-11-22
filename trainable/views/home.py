@@ -27,7 +27,9 @@ def trainable_index_view(request):
                     translate=_, locale="de", eval_url=get_eval_url())
 
         if request.POST and form.validate(request.params):
-            sync(request, form.data.get("sport"), form.data.get("start"), form.data.get("end"))
+            sync(request, form.data.get("sport"),
+                 form.data.get("start"), form.data.get("end"),
+                 form.data.get("commute"))
         values["strava_auth_url"] = url
         values["strava_syncform"] = form.render()
     return values

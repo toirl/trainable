@@ -67,6 +67,7 @@ def strava2trainable(strava):
     trainable = {}
     trainable["strava_id"] = strava.id
     trainable["title"] = strava.name
+    trainable["commute"] = strava.commute
     # The desciption seems not to be included in the response?
     # trainable["description"] = strava.description
     trainable["distance"] = float(strava.distance)
@@ -87,7 +88,7 @@ def get_new_and_updated_activities(request, trainings, activities):
         print(a.upload_id)
 
 
-def update_trainable(request, sport, start, end):
+def update_trainable(request, sport, start, end, commute):
     """Will update and create new trainable entries based on the data on
     strava."""
     client = Client(access_token=get_access_token(request))
@@ -97,20 +98,19 @@ def update_trainable(request, sport, start, end):
     for sactivity in client.get_activities():
         activity = strava2trainable(sactivity)
         # Filter activities based on settings.
+        if activity["commute"] and not commute:
+            count_ignored += 1
+            continue
         if str(activity["sport"]) not in sport:
-            print("Sport")
             count_ignored += 1
             continue
         if start and activity["date"] < str(start):
-            print("Start")
             count_ignored += 1
             continue
         if end and activity["date"] > str(end):
-            print("End")
             count_ignored += 1
             continue
         else:
-            print("Added")
             count_synced += 1
             activities.append(activity)
 
@@ -148,12 +148,12 @@ def update_strava(request):
             activity.strava_id = strava.id
 
 
-def sync(request, sport, start, end):
+def sync(request, sport, start, end, commute):
     """Will sync the trainings with the workout stored on strava"""
     # Update Strava
     # update_strava(request)
     # Update trainable
-    update_trainable(request, sport, start, end)
+    update_trainable(request, sport, start, end, commute)
     log.info("Synced with strava")
     return {}
 

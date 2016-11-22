@@ -2,8 +2,8 @@
 <configuration>
   <source>
     <!-- Define different entity types -->
-    <entity id="sport" name="sport" label="Sport" value="[1,2,3]">
-      <renderer type="checkbox"/>
+    <entity id="sport" name="sport" label="Sport" value="['1','2','3']">
+      <renderer type="checkbox" align="vertical"/>
       <options>
         <option value="1">Running</option>
         <option value="2">Cycling</option>
@@ -12,10 +12,22 @@
     </entity>
     <entity id="start" name="start" label="From" type="date"/>
     <entity id="end" name="end" label="To" type="date"/>
+    <entity id="commute" name="commute" label="Include commute rides?" value="0" type="integer">
+      <renderer type="radio" align="vertical"/>
+      <options>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </options>
+    </entity>
   </source>
   <form id="syncform" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <row>
       <col><field ref="sport"></field></col>
+      <col>
+        <if expr="bool( $sport ) and ( '2' in $sport )" type="readonly" reset-value="true">
+          <field ref="commute"/>
+        </if>
+      </col>
     </row>
     <row>
       <col><field ref="start"></field></col>
