@@ -57,7 +57,7 @@ def get_strava_activity_type(trainable):
 def get_trainable_activity_type(strava):
     if strava.type == "Run":
         return 1
-    elif strava.type == "Ride":
+    elif strava.type in ["Ride", "VirtualRide"]:
         return 2
     elif strava.type == "Swim":
         return 3
