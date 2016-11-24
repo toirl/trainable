@@ -97,17 +97,20 @@ def update_trainable(request, sport, start, end, commute):
     count_ignored = 0
     for sactivity in client.get_activities():
         activity = strava2trainable(sactivity)
+        # Activity date is YYYY-mm-DD HH:MM. As the daterange for the
+        # filter is only date we need to strip the time.
+        adate = activity["date"].split(" ")[0]
         # Filter activities based on settings.
         if activity["commute"] and not commute:
             count_ignored += 1
             continue
+        if start and adate < str(start):
+            count_ignored += 1
+            continue
+        if end and adate > str(end):
+            count_ignored += 1
+            continue
         if str(activity["sport"]) not in sport:
-            count_ignored += 1
-            continue
-        if start and activity["date"] < str(start):
-            count_ignored += 1
-            continue
-        if end and activity["date"] > str(end):
             count_ignored += 1
             continue
         else:
