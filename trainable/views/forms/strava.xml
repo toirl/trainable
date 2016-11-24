@@ -10,8 +10,8 @@
         <option value="3">Swimming</option>
       </options>
     </entity>
-    <entity id="start" name="start" label="From" type="date"/>
-    <entity id="end" name="end" label="To" type="date"/>
+    <entity id="start" name="start" label="From" type="date" value="%date('today')"/>
+    <entity id="end" name="end" label="To" type="date" value="%date('today')"/>
     <entity id="commute" name="commute" label="Include commute rides?" value="0" type="integer">
       <renderer type="radio" align="vertical"/>
       <options>
