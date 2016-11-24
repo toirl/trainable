@@ -10,7 +10,6 @@ from pyramid.view import view_config
 from ringo.lib.imexport import JSONImporter
 from ringo.lib.helpers import serialize
 from ringo.views.base.import_ import _handle_save
-from ringo.views.home import index_view
 from ringo.views.request import get_item_from_request
 from ringo.model.base import get_item_list
 
@@ -27,7 +26,6 @@ def web_sync(request):
 
 @view_config(route_name='authstrava', renderer='/index.mako')
 def strava_authorisation_view(request):
-    values = index_view(request)
     code = request.GET.get("code")
     client = Client()
     client_id = request.user.profile[0].strava_client_id
@@ -37,7 +35,7 @@ def strava_authorisation_view(request):
                                                   code=code)
     request.user.profile[0].strava_access_key = access_token
     request.session.flash("Authorized client", "success")
-    return values
+    return HTTPFound(request.route_path("home"))
 
 
 def get_access_token(request):
