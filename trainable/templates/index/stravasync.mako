@@ -1,5 +1,5 @@
 <%def name="strava_header()">
-  <div class="card-header .card-header.strava">
+  <div class="card-header card-header-strava">
     <img src="${request.static_path('trainable:static/images/strava/icon.png')}"/>
     <img src="${request.static_path('trainable:static/images/strava/Strava_Logo.jpg')}"/>
   </div>

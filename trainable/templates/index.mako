@@ -15,7 +15,16 @@ mapping={'app_title': h.get_app_title()}
   </p>
 % else:
   <div class="row">
-    <div class="col-md-8">TODO</div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          ${_('Workload')}
+        </div>
+        <div class="card-content">
+          TODO
+        </div>
+      </div>
+    </div>
     <div class="col-md-4">
       <%include file="/index/stravasync.mako" />
     </div>

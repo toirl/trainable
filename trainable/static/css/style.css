@@ -9,17 +9,18 @@
 
 .card .card-header {
   border-bottom: 1px solid #eee;
-  padding: 4px;
-  font-size: larger;
+  padding: 4px 6px;
+  font-size: x-large;
+  background-color: #eee;
 }
 
 .card-header img {
   max-height: 50px;
 }
 
-.card-header {
+.card-header-strava {
   color: #fff;
-  background-color: #ed4611;
+  background-color: #ed4611 !important;
 }
 
 .card .card-content {
