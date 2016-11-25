@@ -43,6 +43,8 @@ ergänzen.
 
 .. rubric:: Über agiles Projektmanagement
 
+Agile Methoden im Training
+==========================
 Agile Methoden des Projektmanagement sind in der Softwareentwicklung
 allgegenwärtig und nicht mehr wegzudenken. Auch in anderen Bereichen wird eine
 agile Herangehensweise zunehmend angewandt. Agiles Projektmanagement
@@ -53,7 +55,7 @@ maximaler Nutzen zu jedem Zeitpunkt. Das klingt auch für sein Training
 sinnvoll.
 
 Die Saison als Projekt
-======================
+----------------------
 Die Saison ist wie ein Projekt. Es hat einen klaren Beginn und ein definiertes
 Ende. In der Regel ist das der Saisonhöhepunkt. Möglichweise gibt es auch
 sowas wie Meilensteine. Kleinere Wettkämpfe in der Saison zur Ermittlung
@@ -66,26 +68,27 @@ dass diese Ziele klar messbar sind, denn an Ihnen wird der Sportler am Ende
 entscheiden ob seine Saison erfolgreich gewesen.
 
 Der Athlet als Produkt
-======================
+----------------------
 In den meisten Projekten gilt es ein Produkt erstellen, welches sich dann an
 den Projektzielen messen lässt. Übertragen auf den Sport heisst das nichts
 anderes, als dass wir in der Saison einen Athleten aufbauen, der die
 gesteckten Saisonziele möglichst gut erreichen kann.
 
 Agiles und klassischen Training
-===============================
-Die Planung und Steuerung dieses Aufbaus ist Gegenstand eines Trainingsplans.
-Quasi dem Projektplan für die Saison. Bei dem Aufbau des Trainingsplans gibt
-es verschiedene Heransgehensweisen.
+-------------------------------
+Die Planung und Steuerung des Trainings ist Gegenstand eines Trainingsplans.
+Der Trainingsplan ist quasi der Projektplan für die Saison. Bei dem Aufbau des
+Trainingsplans gibt es verschiedene Ansätze.
 
 Welcher Ansatz am Ende am besten geeignet ist seine Ziele zu erreichen hängt
-stark von den Umständen ab unter denen trainiert wird. Mit meiner Erfahrung
-aus dem Projektmanagment ist das eine typische Risiko/Nutzen Abwägung.
+stark von den Umständen ab unter denen trainiert wird. Um es mit den Worten
+eines Projektmanagers zu sagen, handelt es sich dabei um eine typische
+Risiko/Nutzen Abwägung.
 
-Als Profi-Sportler, unter optimalen Bedingungen trainiert und seine ihrere
-Saison perfekt auf das eine Saisonziel hin planen kann, mag ein klassischer
-Ansatz optimal sein. 
-Für mich als Familienvater mit 40 Stunden/Woche und anderen Verpflichtungen
+Als Profi-Sportler, unter optimalen Bedingungen trainiert und seine Saison
+perfekt auf das eine Saisonziel hin planen kann, mag ein klassischer Ansatz
+optimal sein.
+Für mich als Familienvater mit einer 40 Stunden/Woche und anderen Verpflichtungen
 ist die Einhaltung eines solchen Traingsplans mit dem einen großen Ziel
 mindestens schwierig.
 
@@ -95,15 +98,14 @@ Das ist der Klassiker. Nahezu alle traditionellen Trainingshandbücher lehren
 diesen Ansatz:  Das Training baut in klaren zuvor definierten Phasen
 aufeinander auf. Zu Beginn steht das Grundlagentraining auf dem Programm. Mit
 fortschreitender Zeit wird das Training spezifischer. Das Training baut
-perfekt aufeinander auf und hat das Ziel
-zum Saisonhöhepunkt in Topform zu sein. Entscheiden sind diese zwei drei
-Wochen Wettkampfpahse. Alles ist mehr oder minder diesem Saisonhöhepunkt
-untergeordnet.
+perfekt aufeinander auf und hat das Ziel zum Saisonhöhepunkt in Topform zu
+sein. Entscheidend sind diese zwei drei Wochen Wettkampfphase. Alles ist mehr
+oder minder diesem Saisonhöhepunkt untergeordnet.
 
 Agiles Training
 ---------------
 Wendet man die Grundsätze agiler Method auf sein Training an, so würde man
-Training anders gestalten.
+das Training anders gestalten.
 
 Hier ist es das Ziel zu jedem Zeitpunkt der Saison, die für die zur Erreichung
 der Saisonziele erforderlichen Eigenschaften, möglichst optimal trainiert zu
@@ -127,8 +129,8 @@ Empfohlene Ausrüstung
 .. rubric:: Google Account
 
 
-Über den Authoren
-=================
+Über den Author
+===============
 Mein Name ist Torsten Irländer. Ich bin leidenschaftlicher Softwareentwickler
 und bringe 10 Jahre Erfahrung in der Umsetzung von Projekten mit. Ich arbeite
 Vollzeit und bin glücklicher Vater einer kleinen Familie.  Zwei Umstände die
