@@ -328,6 +328,26 @@ gemessen an meinen Saisonziel der besserere Athlet.
 Trainingstagebuch
 *****************
 
+Übersicht aller Aktivitäten
+===========================
+.. image:: screenshots/activies/overview.png
+
+Aktivität einer Aktivität
+=========================
+.. image:: screenshots/activies/details.png
+
+Statistiken
+-----------
+
+Karte und Diagramme
+-------------------
+
+Zusätzliche Informationen
+-------------------------
+
+
+
+
 *********************
 Athleteneinstellungen
 *********************
