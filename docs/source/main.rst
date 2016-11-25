@@ -41,8 +41,6 @@ die diese Aufgabe hervorragen lösen. Vermutlich nutzt du auch bereits eines
 dieser Programme. Trainable soll diese Programme nicht ersetzen sondern
 ergänzen.
 
-.. rubric:: Über agiles Projektmanagement
-
 Agile Methoden im Training
 ==========================
 Agile Methoden des Projektmanagement sind in der Softwareentwicklung
