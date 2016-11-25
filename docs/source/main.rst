@@ -56,16 +56,19 @@ sinnvoll.
 
 Die Saison als Projekt
 ----------------------
-Die Saison ist wie ein Projekt. Es hat einen klaren Beginn und ein definiertes
-Ende. In der Regel ist das der Saisonhöhepunkt. Möglichweise gibt es auch
-sowas wie Meilensteine. Kleinere Wettkämpfe in der Saison zur Ermittlung
-seines Trainingsstandes unter Wettkampfbedingungen. Jede Saison hat seine
-Ziele. Die werden zu Beginn festgelegt.
+Die Saison ist wie ein Projekt.
 
-So könnte ein Ziel z.B. eine bestimmte Platzierung in einem lokalen Rennen
-sein, oder das Unterbieten einer Zeit auf einer Strecke. Wichtig ist jedoch,
-dass diese Ziele klar messbar sind, denn an Ihnen wird der Sportler am Ende
-entscheiden ob seine Saison erfolgreich gewesen.
+Jede Saison hat seine Ziele, die zu Beginn festgelegt werden. So könnte ein
+Ziel z.B. eine bestimmte Platzierung in einem lokalen Rennen sein, oder das
+Unterbieten einer Zeit auf einer Strecke. Wichtig ist jedoch, dass diese Ziele
+klar messbar sind, denn an Ihnen wird der Sportler am Ende entscheiden, ob
+seine Saison erfolgreich gewesen ist.
+
+Es hat einen klaren Beginn und ein definiertes Ende. In der Regel ist das der
+Saisonhöhepunkt. Möglichweise gibt es auch sowas wie Meilensteine. Kleinere
+Wettkämpfe in der Saison zur Ermittlung seines Trainingsstandes unter
+Wettkampfbedingungen.
+
 
 Der Athlet als Produkt
 ----------------------
@@ -92,8 +95,7 @@ Für mich als Familienvater mit einer 40 Stunden/Woche und anderen Verpflichtung
 ist die Einhaltung eines solchen Traingsplans mit dem einen großen Ziel
 mindestens schwierig.
 
-Training im Wasserfall
-----------------------
+.. rubric:: Training im Wasserfall
 Das ist der Klassiker. Nahezu alle traditionellen Trainingshandbücher lehren
 diesen Ansatz:  Das Training baut in klaren zuvor definierten Phasen
 aufeinander auf. Zu Beginn steht das Grundlagentraining auf dem Programm. Mit
@@ -102,14 +104,14 @@ perfekt aufeinander auf und hat das Ziel zum Saisonhöhepunkt in Topform zu
 sein. Entscheidend sind diese zwei drei Wochen Wettkampfphase. Alles ist mehr
 oder minder diesem Saisonhöhepunkt untergeordnet.
 
-Agiles Training
----------------
+.. rubric:: Agiles Training
 Wendet man die Grundsätze agiler Method auf sein Training an, so würde man
 das Training anders gestalten.
 
 Hier ist es das Ziel zu jedem Zeitpunkt der Saison, die für die zur Erreichung
 der Saisonziele erforderlichen Eigenschaften, möglichst optimal trainiert zu
-haben.
+haben. Eigentlich könnte jeder Tag der Wettkampftag sein und der Athlet könnte
+sich immer sicher sein bestmöglich vorbereitete zu sein.
 
 Zielgruppe
 ==========
