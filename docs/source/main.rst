@@ -62,9 +62,9 @@ Unterbieten einer Zeit auf einer Strecke. Wichtig ist jedoch, dass diese Ziele
 klar messbar sind, denn an Ihnen wird der Sportler am Ende entscheiden, ob
 seine Saison erfolgreich gewesen ist.
 
-Es hat einen klaren Beginn und ein definiertes Ende. In der Regel ist das der
-Saisonhöhepunkt. Möglichweise gibt es auch sowas wie Meilensteine. Kleinere
-Wettkämpfe in der Saison zur Ermittlung seines Trainingsstandes unter
+Die Saison hat einen klaren Beginn und ein definiertes Ende. In der Regel ist
+das der Saisonhöhepunkt. Möglichweise gibt es auch sowas wie Meilensteine:
+Kleinere Wettkämpfe in der Saison zur Ermittlung seines Trainingsstandes unter
 Wettkampfbedingungen.
 
 
@@ -82,11 +82,11 @@ Der Trainingsplan ist quasi der Projektplan für die Saison. Bei dem Aufbau des
 Trainingsplans gibt es verschiedene Ansätze.
 
 Welcher Ansatz am Ende am besten geeignet ist seine Ziele zu erreichen hängt
-stark von den Umständen ab unter denen trainiert wird. Um es mit den Worten
+stark von den Umständen ab, unter denen trainiert wird. Um es mit den Worten
 eines Projektmanagers zu sagen, handelt es sich dabei um eine typische
 Risiko/Nutzen Abwägung.
 
-Als Profi-Sportler, unter optimalen Bedingungen trainiert und seine Saison
+Als Profi-Sportler, der unter optimalen Bedingungen trainiert und seine Saison
 perfekt auf das eine Saisonziel hin planen kann, mag ein klassischer Ansatz
 optimal sein.
 Für mich als Familienvater mit einer 40 Stunden/Woche und anderen Verpflichtungen
@@ -95,7 +95,7 @@ mindestens schwierig.
 
 .. rubric:: Training im Wasserfall
 Das ist der Klassiker. Nahezu alle traditionellen Trainingshandbücher lehren
-diesen Ansatz:  Das Training baut in klaren zuvor definierten Phasen
+diesen Ansatz: Das Training baut in klaren zuvor definierten Phasen
 aufeinander auf. Zu Beginn steht das Grundlagentraining auf dem Programm. Mit
 fortschreitender Zeit wird das Training spezifischer. Das Training baut
 perfekt aufeinander auf und hat das Ziel zum Saisonhöhepunkt in Topform zu
@@ -106,10 +106,12 @@ oder minder diesem Saisonhöhepunkt untergeordnet.
 Wendet man die Grundsätze agiler Method auf sein Training an, so würde man
 das Training anders gestalten.
 
-Hier ist es das Ziel zu jedem Zeitpunkt der Saison, die für die zur Erreichung
-der Saisonziele erforderlichen Eigenschaften, möglichst optimal trainiert zu
-haben. Eigentlich könnte jeder Tag der Wettkampftag sein und der Athlet könnte
-sich immer sicher sein bestmöglich vorbereitete zu sein.
+Hier ist es das Ziel, die für die zur Erreichung der Saisonziele
+erforderlichen Fähigkeiten, möglichst früh auszubilden und zu erhalten. Die
+wichtigsten Fähigkeiten zuerst. So ist das Training zu jedem Zeitpunkt auf die
+konkreten Anforderungen hin optimiert. Eigentlich könnte jeder Tag der
+Wettkampftag sein, und der Athlet wäre sich immer sicher, sich bestmöglich
+vorbereitetet zu haben.
 
 Zielgruppe
 ==========
