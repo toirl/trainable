@@ -25,10 +25,9 @@ Verbesserungsvorschlägen finden sich bei `Trainable auf Github
 
 
 
-Index und Tabellen
-==================
-
-* :ref:`genindex`
+.. Index und Tabellen
+.. ==================
+.. * :ref:`genindex`
+.. * :ref:`search`
 .. * :ref:`modindex`
-* :ref:`search`
 
