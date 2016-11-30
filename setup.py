@@ -14,7 +14,7 @@ install_reqs = parse_requirements(os.path.join(here, 'requirements.txt'), sessio
 requires = [str(ir.req) for ir in install_reqs]
 
 setup(name='trainable',
-      version='0.0',
+      version='0.1',
       description='trainable',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
