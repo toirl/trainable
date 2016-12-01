@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
   <source>
-    <entity id="e1" name="dummy" label="Dummy" type="string"/>
+    <entity id="name" name="name" label="Title" type="string" required="true"/>
+    <!-- Highlights -->
+    <entity id="highlight_1_date" name="highlight_1_date" label="Date" type="date" required="true">
+      <help display="text">You will be in top shape for about two weeks around this date</help>
+    </entity>
+    <entity id="highlight_1_title" name="highlight_1_title" label="Title" type="string" desired="true"/>
+    <entity id="highlight_1_desc" name="highlight_1_desc" label="Description" type="string">
+      <renderer type="textarea" rows="5"/>
+      <help display="text">Describe this event to get a better idea of what needs to be
+        trained most. Is it a short criteria event or a day race?</help>
+    </entity>
+    <entity id="weekly_hours" name="weekly_hours" label="Max weekly hours" type="integer" required="true">
+      <help display="text">Please give the maximum amount of ours you can spent per week</help>
+    </entity>
+    <!-- mesocycles -->
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <snippet ref="create_snippet"/>
@@ -21,7 +35,24 @@
   <!-- Role -->
   <snippet id="s1">
     <row>
-      <col><field ref="e1"/></col>
+      <col><field ref="name"/></col>
     </row>
+      <row>
+        <col width="2"><field ref="weekly_hours"/></col>
+      </row>
+    <section label="Saison Highlights">
+      <text>Please set your saison highlight as the first step to your
+        personal trainingplan. Trainable will then create a timeframe for your
+        training plan.</text>
+      <subsection label="Primary Highlight">
+        <row>
+          <col width="2"><field ref="highlight_1_date"/></col>
+          <col width="10"><field ref="highlight_1_title"/></col>
+        </row>
+        <row>
+          <col><field ref="highlight_1_desc"/></col>
+        </row>
+      </subsection>
+    </section>
   </snippet>
 </configuration>
