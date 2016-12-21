@@ -16,31 +16,49 @@ mapping={'app_title': h.get_app_title()}
 % else:
   <div class="row">
     <div class="col-md-8">
-      % for tp, workload in trainingplans:
-      <div class="card">
-        <div class="card-header">
-          ${tp}
-        </div>
-        <div class="card-content">
-          <div style="height:200px;width:100%" id="workload"></div>
-          <script>
-            var data = "${workload.get_diagram_data()}";
-            var id = "workload";
-            var title = "${workload.get_diagram_titel()}";
-            var ylabel = "${workload.get_diagram_ylabel()}";
-            var xlabel = "${workload.get_diagram_xlabel()}";
-            var fieldname = "workload";
-            var errorBars = false;
-            g = renderDiagram(id, data, title, xlabel, ylabel, fieldname, errorBars, false);
-          </script>
+      <div class="row">
+        <div class="col-md-12">
+          % for tp, workload in trainingplans:
+          <div class="card">
+            <div class="card-header">
+              ${tp}
+            </div>
+            <div class="card-content">
+              <div style="height:200px;width:100%" id="workload"></div>
+              <script>
+                var data = "${workload.get_diagram_data()}";
+                var id = "workload";
+                var title = "${workload.get_diagram_titel()}";
+                var ylabel = "${workload.get_diagram_ylabel()}";
+                var xlabel = "${workload.get_diagram_xlabel()}";
+                var fieldname = "workload";
+                var errorBars = false;
+                g = renderDiagram(id, data, title, xlabel, ylabel, fieldname, errorBars, false);
+              </script>
+              <div>
+                <table class="table">
+                  <tr>
+                    <td>${_('Start date')}</td>
+                    <td>${tp.start_date} (${_('CW')}${tp.start_week})</td>
+                    <td>${_('End date')}</td>
+                    <td>${tp.end_date} (${_('CW')}${tp.end_week})</td>
+                    <td>${_('Length')}</td>
+                    <td>${tp.length}</td>
+                  </tr>
+                  <tr>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          % endfor
+          % if len(trainingplans) == 0:
+            Oh! It seems you do not have any active trainingplan.</br>
+            Start now and create a new <a
+              href="${request.route_path('trainingplans-create', _query={"backurl": request.route_path('home')})}">Trainingplan</a>!
+          % endif
         </div>
       </div>
-      % endfor
-      % if len(trainingplans) == 0:
-        Oh! It seems you do not have any active trainingplan.</br>
-        Start now and create a new <a
-          href="${request.route_path('trainingplans-create', _query={"backurl": request.route_path('home')})}">Trainingplan</a>!
-      % endif
     </div>
     <div class="col-md-4">
       <%include file="/index/stravasync.mako" />
