@@ -1,7 +1,7 @@
 import datetime
 import sqlalchemy as sa
 from ringo.model import Base
-from ringo.model.base import BaseItem, get_item_list
+from ringo.model.base import BaseItem
 from ringo.model.mixins import (
     Owned
 )
