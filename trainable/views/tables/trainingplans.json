@@ -2,7 +2,8 @@
     "overview": {
         "columns": [
             {"name": "highlight_1_date", "label": "Date", "width": 150},
-            {"name": "highlight_1_title", "label": "Highlight"}
+            {"name": "highlight_1_title", "label": "Highlight"},
+            {"name": "id", "label": "Plan", "renderer": "trainable.lib.renderer.plan_renderer", "width": 150}
         ]
     }
 }

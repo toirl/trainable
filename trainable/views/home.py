@@ -41,11 +41,11 @@ def get_workload_for_trainingplan(request, tp, activities):
     _ = request.translate
     dataprovider = Dataprovider(tp.get_weeks(), None, _("Week"), _("Workload"))
     dataprovider.add_series("Duration [min]", tp.get_duration())
-    dataprovider.add_series("Intensity [b]", tp.get_intensity())
-    dataprovider.add_series("Pensum [B]", tp.get_pensum())
+    #dataprovider.add_series("Intensity [b]", tp.get_intensity())
+    #dataprovider.add_series("Pensum [B]", tp.get_pensum())
     dataprovider.add_series("Training Duration [min]", tp.get_activities_duration(activities))
-    dataprovider.add_series("Training Intensity [b]", tp.get_activities_intensity(activities))
-    dataprovider.add_series("Training Pensum [B]", tp.get_activities_pensum(activities))
+    #dataprovider.add_series("Training Intensity [b]", tp.get_activities_intensity(activities))
+    #dataprovider.add_series("Training Pensum [B]", tp.get_activities_pensum(activities))
     return dataprovider
 
 

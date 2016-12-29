@@ -15,6 +15,15 @@
     <entity id="weekly_hours" name="weekly_hours" label="Max weekly hours" type="integer" required="true">
       <help display="text">Please give the maximum amount of ours you can spent per week</help>
     </entity>
+    <entity id="category" name="category" label="Category" type="integer" required="true">
+      <renderer type="dropdown"/>
+      <options>
+        <option value="1">26 Weeks (2P-3*4F0R-3*4B0R)</option>
+        <option value="0">Custom</option>
+      </options>
+      <help display="text">P:Preparation, F:Foundation, B:Build, M:Maintain, r:recovery (4F means 4 weeks foundation, Additional "r" means one of the weeks is a recovery week)</help>
+    </entity>
+    <entity id="plan" name="plan" label="Custom Plan" type="string" required="true"/>
     <!-- mesocycles -->
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
@@ -39,6 +48,12 @@
     </row>
       <row>
         <col width="2"><field ref="weekly_hours"/></col>
+        <col width="3"><field ref="category"/></col>
+        <col width="3">
+          <if expr="$category == 0" type="readonly">
+            <field ref="plan"/>
+          </if>
+        </col>
       </row>
     <section label="Saison Highlights">
       <text>Please set your saison highlight as the first step to your

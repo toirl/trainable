@@ -1,3 +1,4 @@
+import re
 import datetime
 import sqlalchemy as sa
 from ringo.model import Base
@@ -15,6 +16,112 @@ def week2activities(activities):
             w2a[week] = []
         w2a[week].append(activity)
     return w2a
+
+
+def split_code(code):
+    """Code for trainingsplan is formated in a specific format. There
+    are different phases in the plan which are devided by a '-' sign.
+    Each of this phases is divided by '*' where the first part defines
+    how often the phase will be repeated and the second part defines
+    details on the phase phase itself (Type, length in weeks etc). The
+    details are irrelevant in the this place and are handled later in
+    the
+    get_mesocycle_factory."""
+    for phase in code.split("-"):
+        repetitions, phase = phase.split("*")
+        repetitions = int(repetitions)
+        for r in range(repetitions):
+            yield (phase, r, repetitions)
+
+
+def get_start_end(hours, start, end, length, current_repeat):
+    start_hours = hours*start
+    end_hours = hours*end
+    total_gain = end_hours - start_hours
+    gain_per_week = total_gain / length
+
+    return (round(start_hours + (current_repeat * gain_per_week), 2),
+            round(start_hours + ((current_repeat+1) * gain_per_week), 2))
+
+
+def maintainance_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration):
+    name = "Maintainance {}".format(repeat)
+    intensity = 10
+    start_hours, end_hours = get_start_end(weekly_hours, 1.0, 1.0, repetitions, repeat)
+    start_intensity, end_intensity = get_start_end(intensity, 1.0, 1.0, repetitions, repeat)
+    return MesoCycle(name, int(length_phase),
+                     start_hours, end_hours,
+                     start_intensity, end_intensity,
+                     regeneration_length=int(length_regeneration))
+
+
+def preparation_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration):
+    name = "Preparation {}".format(repeat)
+    intensity = 10
+    start_hours, end_hours = get_start_end(weekly_hours, 0.5, 0.5, repetitions, repeat)
+    start_intensity, end_intensity = get_start_end(intensity, 1.0, 1.0, repetitions, repeat)
+    return MesoCycle(name, int(length_phase),
+                     start_hours, end_hours,
+                     start_intensity, end_intensity,
+                     regeneration_length=int(length_regeneration))
+
+
+def foundation_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration):
+    name = "Founddation {}".format(repeat)
+    intensity = 13
+    start_hours, end_hours = get_start_end(weekly_hours, 0.5, 0.7, repetitions, repeat)
+    start_intensity, end_intensity = get_start_end(intensity, 0.8, 1.0, repetitions, repeat)
+    return MesoCycle(name, int(length_phase),
+                     start_hours, end_hours,
+                     start_intensity, end_intensity,
+                     regeneration_length=int(length_regeneration))
+
+
+def build_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration):
+    name = "Build {}".format(repeat)
+    intensity = 16
+    start_hours, end_hours = get_start_end(weekly_hours, 0.7, 1.0, repetitions, repeat)
+    start_intensity, end_intensity = get_start_end(intensity, 0.8, 1.0, repetitions, repeat)
+    return MesoCycle(name, int(length_phase),
+                     start_hours, end_hours,
+                     start_intensity, end_intensity,
+                     regeneration_length=int(length_regeneration))
+
+
+def get_mesocycle_factory(phase, repetitions, repeat, weekly_hours):
+
+    maintainance = re.compile("(\d{1})M(\d{1})R")
+    preparation = re.compile("(\d{1})P(\d{1})R")
+    foundation = re.compile("(\d{1})F(\d{1})R")
+    build = re.compile("(\d{1})B(\d{1})R")
+
+    length_phase = 4
+    length_regeneration = 1
+
+    def get_length(match):
+        return match.group(1), match.group(2)
+
+    is_maintainance = maintainance.match(phase)
+    if is_maintainance:
+        length_phase, length_regeneration = get_length(is_maintainance)
+        return maintainance_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration)
+
+    is_preparation = preparation.match(phase)
+    if is_preparation:
+        length_phase, length_regeneration = get_length(is_preparation)
+        return preparation_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration)
+
+    is_foundation = foundation.match(phase)
+    if is_foundation:
+        length_phase = is_foundation.group(1)
+        length_regeneration = is_foundation.group(2)
+        return foundation_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration)
+
+    is_build = build.match(phase)
+    if is_build:
+        length_phase = is_build.group(1)
+        length_regeneration = is_build.group(2)
+        return build_mescycle_factory(repeat, repetitions, weekly_hours, length_phase, length_regeneration)
 
 
 class MicroCycle(object):
@@ -80,16 +187,21 @@ class Trainingplan(BaseItem, Owned, Base):
     highlight_1_title = sa.Column('highlight_1_title', sa.String, nullable=False, default='')
     highlight_1_desc = sa.Column('highlight_1_desc', sa.String, nullable=False, default='')
     weekly_hours = sa.Column('weekly_hours', sa.Integer, nullable=False)
+    category = sa.Column('category', sa.Integer, nullable=False)
+    plan = sa.Column('plan', sa.String)
 
     def get_mesocycles(self):
+        plans = {
+                    "1": "1*2P0R-3*4F1R-3*4B1R",
+                    "2": "3*8M1R"
+                }
+        if self.category == 0:
+            plan_code = self.plan
+        else:
+            plan_code = plans[str(self.category)]
         cycles = []
-        cycles.append(MesoCycle("Foundation 0", 2, 5, 5, 8, 8,  regeneration_length=0))
-        cycles.append(MesoCycle("Foundation 2", 4, 5, 7, 8, 8, regeneration_length=1))
-        cycles.append(MesoCycle("Foundation 3", 4, 7, 8, 8, 8, regeneration_length=1))
-        cycles.append(MesoCycle("Foundation 4", 4, 8, 9, 8, 10, regeneration_length=1))
-        cycles.append(MesoCycle("Build 1", 4, 9, 10, 9, 14, regeneration_length=1))
-        cycles.append(MesoCycle("Build 2", 4, 10, 10, 13, 14, regeneration_length=1))
-        cycles.append(MesoCycle("Build 3", 4, 10, 9, 10, 10, regeneration_length=1))
+        for phase, repeat, repetitions in split_code(plan_code):
+            cycles.append(get_mesocycle_factory(phase, repetitions, repeat, self.weekly_hours))
         return cycles
 
     @property
@@ -141,7 +253,7 @@ class Trainingplan(BaseItem, Owned, Base):
             durations.append(round(duration.total_seconds()/60))
         return durations
 
-    def get_intensity(self):
+    def get_start_end(self):
         intensity = []
         cycles = self.get_mesocycles()
         for c in cycles:
@@ -165,7 +277,7 @@ class Trainingplan(BaseItem, Owned, Base):
 
     def get_pensum(self):
         pensum = []
-        for p in zip(self.get_duration(), self.get_intensity()):
+        for p in zip(self.get_duration(), self.get_start_end()):
             pensum.append(p[0] * p[1])
         return pensum
 
