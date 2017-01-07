@@ -88,10 +88,10 @@ class Activity(BaseItem, Owned, Base):
     connection with rides."""
     distance = sa.Column('distance', sa.Integer)
     """Distance in training in meters"""
-    elevation = sa.Column('elevation', sa.Integer)
+    _elevation = sa.Column('elevation', sa.Integer)
     """Accumulated elevation in training in meters"""
     heartrate = sa.Column('heartrate', sa.Integer)
-    """Averange hearrate"""
+    """Averange heartrate"""
     title = sa.Column('title', sa.String, nullable=False, default='')
     """A title for the training"""
     description = sa.Column('description', sa.String, nullable=False, default='')
@@ -150,6 +150,25 @@ class Activity(BaseItem, Owned, Base):
         out.append(u"{}".format(self.date))
         out.append(u"</small>")
         return literal("".join(out))
+
+    @property
+    def elevation(self):
+        if not self.altitude_stream:
+            if self._elevation:
+                return self._elevation
+            else:
+                return 1
+        alt = 1
+        a = None
+        b = None
+        for x in self.altitude_stream:
+            b = a
+            a = x
+            if a is None or b is None:
+                continue
+            if a > b:
+                alt += a-b
+        return alt
 
     @property
     def watts_per_kg(self):

@@ -25,19 +25,25 @@ activity = field._form._item %>
 </%def>
 <div id="infobox">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <center>
       <h4>${_("Duration")}</h4>
       ${activity.duration}<br/><small>[HH:MM:SS]</small>
       </center>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <center>
       <h4>${_("Distance")}</h4>
       ${activity.distance}<br/><small>[m]</small>
       </center>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+      <center>
+      <h4>${_("Elevation")}</h4>
+      ${activity.elevation}<br/><small>[m]</small>
+      </center>
+    </div>
+    <div class="col-md-3">
       <center>
       % if activity.sport == 1:
         <h4>${_("Pace")}</h4>
@@ -57,19 +63,6 @@ activity = field._form._item %>
   <div class="row">
     <div class="col-md-12">
       <table class="table table-condesed">
-        % if activity.elevation:
-        <tr>
-          <td>
-            ${"Total elevation"}
-          </td>
-          <td>
-            ${activity.elevation}
-          </td>
-          <td>
-            m
-          </td>
-        </tr>
-        % endif
         % if activity.watts_per_kg:
         <tr>
           <td>
