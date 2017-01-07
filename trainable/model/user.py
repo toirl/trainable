@@ -23,3 +23,4 @@ class TrainableProfile(Profile):
 
     strava_client_id = sa.Column(sa.String)
     strava_access_key = sa.Column(sa.String)
+    max_heartrate = sa.Column(sa.Integer)
