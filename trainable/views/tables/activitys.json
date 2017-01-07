@@ -4,7 +4,8 @@
             {"name": "date", "label": "Date"},
             {"name": "title", "label": "Title"},
             {"name": "sport", "label": "Sport", "expand": true},
-            {"name": "distance", "label": "Distance [m]"}
+            {"name": "distance", "label": "Distance [m]"},
+            {"name": "zone", "label": "Zone"}
         ],
         "settings": {
           "default-sort-column": "date",

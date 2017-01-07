@@ -135,6 +135,8 @@ class Activity(BaseItem, Owned, Base):
     grade_smooth_stream = sa.Column('grade_smooth_stream', Json)
     """float percent"""
 
+    owner = sa.orm.relationship("TrainableUser")
+
     def render(self, request):
         # https://www.iconfinder.com/iconsets/sports-android-l-lollipop-icon-pack
         if self.sport == 1:
@@ -150,6 +152,20 @@ class Activity(BaseItem, Owned, Base):
         out.append(u"{}".format(self.date))
         out.append(u"</small>")
         return literal("".join(out))
+
+    @property
+    def zone(self):
+        mhr = self.owner.profile[0].max_heartrate
+        if mhr*0.6 > self.heartrate:
+            return "REKOM"
+        elif mhr*0.6 <= self.heartrate < mhr*0.7:
+            return "GA1"
+        elif mhr*0.7 <= self.heartrate < mhr*0.8:
+            return "GA2"
+        elif mhr*0.8 <= self.heartrate < mhr*0.9:
+            return "EB"
+        elif mhr*0.9 <= self.heartrate:
+            return "SB"
 
     @property
     def elevation(self):
@@ -208,7 +224,6 @@ class Activity(BaseItem, Owned, Base):
                           "Heartrate [bpm]")
         dp.add_series("Heartrate [bpm]", self.heartrate_stream)
         return dp
-
 
     @property
     def _velocity_dataprovider(self):
