@@ -261,6 +261,14 @@ class Trainingplan(BaseItem, Owned, Base):
                 intensity.append(w.intensity)
         return intensity
 
+    def get_intensity(self):
+        intensities = []
+        cycles = self.get_mesocycles()
+        for c in cycles:
+            for w in c.weeks:
+                intensities.append(w.intensity)
+        return intensities
+
     def get_activities_intensity(self, activities):
         intensities = []
         activities = week2activities(activities)

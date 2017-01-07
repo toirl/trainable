@@ -24,21 +24,34 @@
       <help display="text">P:Preparation, F:Foundation, B:Build, M:Maintain, r:recovery (4F means 4 weeks foundation, Additional "r" means one of the weeks is a recovery week)</help>
     </entity>
     <entity id="plan" name="plan" label="Custom Plan" type="string" required="true"/>
+    <entity id="pensum" name="_pensum" label="Pensum">
+      <renderer type="pensum"/>
+    </entity>
     <!-- mesocycles -->
   </source>
   <form id="create" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
     <snippet ref="create_snippet"/>
   </form>
   <form id="update" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
-    <snippet ref="create_snippet"/>
+    <snippet ref="update_snippet"/>
   </form>
   <form id="read" readonly="true">
-    <snippet ref="create_snippet"/>
+    <snippet ref="update_snippet"/>
   </form>
 
   <!-- Create-->
   <snippet id="create_snippet">
     <snippet ref="s1"/>
+  </snippet>
+  <snippet id="update_snippet">
+    <page id="p1" label="Trainingsplan">
+      <snippet ref="s1"/>
+    </page>
+    <page id="p2" label="Pensum">
+      <row>
+        <col><field ref="pensum"/></col>
+      </row>
+    </page>
   </snippet>
 
   <!-- Role -->

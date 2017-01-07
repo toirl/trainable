@@ -21,34 +21,9 @@ mapping={'app_title': h.get_app_title()}
           % for tp, workload in trainingplans:
           <div class="card">
             <div class="card-header">
-              ${tp}
+              ${_('Current week in trainingsplan "{0}"').format(tp)}
             </div>
             <div class="card-content">
-              <div style="height:200px;width:100%" id="workload"></div>
-              <script>
-                var data = "${workload.get_diagram_data()}";
-                var id = "workload";
-                var title = "${workload.get_diagram_titel()}";
-                var ylabel = "${workload.get_diagram_ylabel()}";
-                var xlabel = "${workload.get_diagram_xlabel()}";
-                var fieldname = "workload";
-                var errorBars = false;
-                g = renderDiagram(id, data, title, xlabel, ylabel, fieldname, errorBars, false);
-              </script>
-              <div>
-                <table class="table">
-                  <tr>
-                    <td>${_('Start date')}</td>
-                    <td>${tp.start_date} (${_('CW')}${tp.start_week})</td>
-                    <td>${_('End date')}</td>
-                    <td>${tp.end_date} (${_('CW')}${tp.end_week})</td>
-                    <td>${_('Length')}</td>
-                    <td>${tp.length}</td>
-                  </tr>
-                  <tr>
-                  </tr>
-                </table>
-              </div>
             </div>
           </div>
           % endfor
