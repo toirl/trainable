@@ -1,4 +1,5 @@
 import json
+import math
 import datetime
 import collections
 import sqlalchemy as sa
@@ -117,7 +118,7 @@ class Activity(BaseItem, Owned, Base):
     connection with rides."""
     distance = sa.Column('distance', sa.Integer)
     """Distance in training in meters"""
-    elevation_gain = sa.Column('elevation', sa.Integer)
+    _elevation = sa.Column('elevation', sa.Integer)
     """Accumulated elevation in training in meters"""
     heartrate = sa.Column('heartrate', sa.Integer)
     """Averange heartrate"""
@@ -202,10 +203,36 @@ class Activity(BaseItem, Owned, Base):
         return zones
 
     @property
+    def trimp(self):
+        """Return calculated trainingimpuls (trimp). If available trimp
+        will be calculated based on detailed heartrate information
+        following the Trimp(exp) Heartrare scaling. See
+        http://fellrnr.com/wiki/TRIMP for more details. Otherwise trimp
+        is calculated based on the average heartrate."""
+        total_minutes = self.duration.seconds / 60
+        mhr = self.owner.profile[0].max_heartrate
+        rhr = 36
+        trimp = 0
+        mhr = self.owner.profile[0].max_heartrate
+        if not self.heartrate_stream:
+            zones = heartratezones([self.heartrate], mhr)
+        else:
+            zones = heartratezones(self.heartrate_stream, mhr)
+        for key in zones:
+            if not len(zones[key]):
+                continue
+            avg_hr = sum(zones[key]) / float(len(zones[key]))
+            zone_duration = len(zones[key]) / float(len(self.heartrate_stream)) * 100
+            D = total_minutes / 100.0 * zone_duration
+            delta_heartrate = (avg_hr-rhr)/float(mhr-rhr)
+            trimp += int(D * delta_heartrate * 0.64 * math.pow(2.71828, 1.92 * delta_heartrate))
+        return trimp
+
+    @property
     def elevation(self):
         if not self.altitude_stream:
-            if self.elevation_gain:
-                return self.elevation_gain
+            if self._elevation:
+                return self._elevation
             else:
                 return 1
         alt = 1

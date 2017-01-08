@@ -99,6 +99,17 @@ activity = field._form._item %>
   <div class="row">
     <div class="col-md-12">
       <table class="table table-condesed">
+        <tr>
+          <td>
+            ${"Trimp"}
+          </td>
+          <td>
+            ${activity.trimp}
+          </td>
+          <td>
+            --
+          </td>
+        </tr>
         % if activity.watts_per_kg:
         <tr>
           <td>
