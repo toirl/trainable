@@ -2,6 +2,26 @@
 <% 
 from trainable.model.activity import velocity2pace, velocity2speed
 activity = field._form._item %>
+
+<%def name="renderbar(zone, value)">
+  <% 
+  if zone == "GA1":
+    bar_style = "progress-bar-info"
+  elif zone == "GA2":
+    bar_style = "progress-bar-success"
+  elif zone == "EB":
+    bar_style = "progress-bar-warning"
+  elif zone == "SB":
+    bar_style = "progress-bar-danger"
+  else:
+    bar_style = "progress-bar-default"
+  endif
+  %>
+  <div class="progress-bar ${bar_style}" role="progressbar" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100" style="width: ${value}%; min-width: 2em;">
+    ${value}%
+  </div>
+</%def>
+
 <%def name="minmaxavg(label, unit, stream, converter)">
 % if stream:
 <tr>
@@ -53,6 +73,22 @@ activity = field._form._item %>
         ${activity.speed}<br/><small>[km/h]</small>
       % endif
       </center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      &nbsp;
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      % for zone in activity.zones:
+        % if activity.zones[zone]:
+          ${zone}<div class="progress">
+            ${renderbar(zone, activity.zones[zone])}
+        </div>
+        % endif
+      % endfor
     </div>
   </div>
   <div class="row">

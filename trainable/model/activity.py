@@ -1,5 +1,6 @@
 import json
 import datetime
+import collections
 import sqlalchemy as sa
 from ringo.model import Base
 from ringo.model.base import BaseItem
@@ -50,6 +51,34 @@ def velocity2speed(mps, distance=1000):
     # calculate meters per hour
     dph = mph / distance
     return round(dph, 2)
+
+
+def get_heartratezone(rate, mhr):
+    if mhr*0.6 > rate:
+        return "REKOM"
+    elif mhr*0.6 <= rate < mhr*0.7:
+        return "GA1"
+    elif mhr*0.7 <= rate < mhr*0.8:
+        return "GA2"
+    elif mhr*0.8 <= rate < mhr*0.9:
+        return "EB"
+    elif mhr*0.9 <= rate:
+        return "SB"
+
+
+def heartratezones(heartrate_stream, mhr):
+    zones = collections.OrderedDict()
+    zones["REKOM"] = []
+    zones["GA1"] = []
+    zones["GA2"] = []
+    zones["EB"] = []
+    zones["SB"] = []
+    for rate in heartrate_stream:
+        zone = get_heartratezone(rate, mhr)
+        if zone not in zones:
+            zones[zone] = []
+        zones[zone].append(rate)
+    return zones
 
 
 class Activity(BaseItem, Owned, Base):
@@ -156,16 +185,21 @@ class Activity(BaseItem, Owned, Base):
     @property
     def zone(self):
         mhr = self.owner.profile[0].max_heartrate
-        if mhr*0.6 > self.heartrate:
-            return "REKOM"
-        elif mhr*0.6 <= self.heartrate < mhr*0.7:
-            return "GA1"
-        elif mhr*0.7 <= self.heartrate < mhr*0.8:
-            return "GA2"
-        elif mhr*0.8 <= self.heartrate < mhr*0.9:
-            return "EB"
-        elif mhr*0.9 <= self.heartrate:
-            return "SB"
+        return get_heartratezone(self.heartrate, mhr)
+
+    @property
+    def zones(self):
+        mhr = self.owner.profile[0].max_heartrate
+        if self.heartrate_stream:
+            zones = heartratezones(self.heartrate_stream, mhr)
+            for key in zones:
+                zone_duration = len(zones[key]) / float(len(self.heartrate_stream)) * 100
+                zones[key] = round(zone_duration, 1)
+        else:
+            zones = heartratezones([self.heartrate], mhr)
+            for key in zones:
+                zones[key] = 100
+        return zones
 
     @property
     def elevation(self):
