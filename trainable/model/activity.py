@@ -88,7 +88,7 @@ class Activity(BaseItem, Owned, Base):
     connection with rides."""
     distance = sa.Column('distance', sa.Integer)
     """Distance in training in meters"""
-    _elevation = sa.Column('elevation', sa.Integer)
+    elevation_gain = sa.Column('elevation', sa.Integer)
     """Accumulated elevation in training in meters"""
     heartrate = sa.Column('heartrate', sa.Integer)
     """Averange heartrate"""
@@ -170,8 +170,8 @@ class Activity(BaseItem, Owned, Base):
     @property
     def elevation(self):
         if not self.altitude_stream:
-            if self._elevation:
-                return self._elevation
+            if self.elevation_gain:
+                return self.elevation_gain
             else:
                 return 1
         alt = 1

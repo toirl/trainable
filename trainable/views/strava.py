@@ -70,7 +70,7 @@ def strava2trainable(strava):
     # trainable["description"] = strava.description
     trainable["distance"] = float(strava.distance)
     trainable["duration"] = serialize(strava.moving_time)
-    trainable["elevation"] = float(strava.total_elevation_gain)
+    trainable["elevation_gain"] = float(strava.total_elevation_gain)
     trainable["sport"] = get_trainable_activity_type(strava)
     trainable["date"] = serialize(strava.start_date)
     trainable["heartrate"] = strava.average_heartrate
