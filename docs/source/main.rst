@@ -296,7 +296,7 @@ Unterschiede bei agilen Zielen
 ==============================
 Wenn man das Training immer an den unmittelbar wichtigsten Leistungskaforen
 ausrichtet, dann weicht der Trainingsplan in Teilen erheblich von dem
-klassischen Trainingsplan ab. 
+klassischen Trainingsplan ab.
 
 Klassisch würde man den Start der Saison beim Radsport mit langen lockeren
 Einheiten beginnen. Ziel ist es den Fettstoffwechsel zu trainieren, um später
@@ -355,12 +355,30 @@ Zusätzliche Informationen
 *********************
 Athleteneinstellungen
 *********************
+Das Profil des Athleten enthält einige persönliche Angaben, die im späteren
+genutzt werden um Aussagen zum Trainings zu geben.
+
+.. index::
+   single: maximale Herzfrequenz
+
+Hierzu zählt insgesondere die **maximale Herzfrequenz** des Athleten, die für
+die Berechnung der :ref:`trainingsbereiche` genutzt wird.
+
+.. _trainingsbereiche:
+
+Trainingsbereiche
+=================
+Die Trainingsbereiche basieren auf der maximalen Herzfrequenz
+des Athtleten. Trainable nutzt fünf verschiedene Trainingsbereiche:
+
+ * Regeneration REKOM <= 60% der max. Herzfrequenz
+ * Grundlagenausdauer 1 (GA1) <= 60% - 70% der max. Herzfrequenz
+ * Grundlagenausdauer 2 (GA2) <= 70% - 80% der max. Herzfrequenz
+ * Entwicklungsbereich (EB) <= 80% - 90% der max. Herzfrequenz
+ * Spitzenbereich (SB) <= 80% - 90% der max. Herzfrequenz
 
 Strava Verbindung
 =================
-
-Google Kalender
-===============
 
 ***************
 Scrum2Trainable
