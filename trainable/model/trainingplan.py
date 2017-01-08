@@ -276,7 +276,7 @@ class Trainingplan(BaseItem, Owned, Base):
             intensity = 0
             week_activities = activities.get(self.start_week + week-1, [])
             for a in week_activities:
-                intensity += a.intensity if a.intensity else 7
+                intensity += a._intensity if a._intensity else 7
             if len(week_activities) > 0:
                 intensities.append(intensity/len(week_activities))
             else:

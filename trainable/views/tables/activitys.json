@@ -6,6 +6,7 @@
             {"name": "sport", "label": "Sport", "expand": true},
             {"name": "distance", "label": "Distance [m]"},
             {"name": "zone", "label": "Zone"},
+            {"name": "_intensity", "label": "RPE [borg]"},
             {"name": "trimp", "label": "Trimp"}
         ],
         "settings": {

@@ -110,6 +110,17 @@ activity = field._form._item %>
             --
           </td>
         </tr>
+        <tr>
+          <td>
+            ${u"Estimated RPE (based on ø HR)"}
+          </td>
+          <td>
+            ${activity.estimated_intensity}
+          </td>
+          <td>
+            borg20
+          </td>
+        </tr>
         % if activity.watts_per_kg:
         <tr>
           <td>

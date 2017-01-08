@@ -184,6 +184,31 @@ class Activity(BaseItem, Owned, Base):
         return literal("".join(out))
 
     @property
+    def _intensity(self):
+        """Returns the rating of percieved exertion. If a user value is
+        available than return users rating. If no rating is available
+        the exerption is calculated based on the average heartrate."""
+        if self.intensity:
+            return self.intensity
+        return self.estimated_intensity
+
+    @property
+    def estimated_intensity(self):
+        """Will return the estimated percieved exertion based on average
+        heartrate. The method will map the available 14 steps from 6 to
+        20 of the borg20 scale to 50% of the max heartrate (no exertion)
+        up to max heartrate (max exertion)"""
+        mhr = self.owner.profile[0].max_heartrate
+        lhr = mhr * 0.5
+        hr_range = mhr - lhr
+        hr_step = hr_range / 14
+        for i in range(1, 15):
+            if lhr + (i * hr_step) >= self.heartrate:
+                return i+5
+        # lower than 50%
+        return 6
+
+    @property
     def zone(self):
         mhr = self.owner.profile[0].max_heartrate
         return get_heartratezone(self.heartrate, mhr)
