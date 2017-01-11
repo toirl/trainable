@@ -89,4 +89,73 @@ var figure = {
             "autobiny": true
         }
     ]
+};
+
+var fitnessFigure = {
+    "frames": [], 
+    "layout": {
+        "autosize": true, 
+        "yaxis": {
+            "type": "linear", 
+            "autorange": true, 
+            "title": "Form"
+        }, 
+        "plot_bgcolor": "rgb(255, 255, 255)",  
+        "showlegend": true, 
+        "margin": {t:0},
+        "breakpoints": [], 
+        "yaxis2": {
+            "title": "TSS", 
+            "overlaying": "y", 
+            "anchor": "x", 
+            "type": "linear", 
+            "autorange": true, 
+            "side": "right"
+        }, 
+        "xaxis": { 
+            "title": "Day"
+        }, 
+        "hovermode": "closest"
+    }, 
+    "data": [
+        {
+            "yaxis": "y2", 
+            "name": "TSS", 
+            "marker": {
+                "color": "rgb(214, 39, 40)", 
+                "sizeref": 3.5
+            }, 
+            "mode": "markers", 
+            "type": "scatter", 
+            "autobiny": true
+        }, 
+        { 
+            "name": "CTL",  
+            "mode": "lines", 
+            "fillcolor": "rgb(223, 223, 223)", 
+            "line": {
+                "color": "rgb(68, 68, 68)"
+            }, 
+            "fill": "tozeroy", 
+            "type": "scatter"
+        }, 
+        { 
+            "name": "ATL", 
+            "mode": "lines", 
+            "line": {
+                "color": "rgb(255, 127, 14)"
+            }, 
+            "type": "scatter", 
+            "autobiny": true
+        }, 
+        { 
+            "name": "TSB", 
+            "mode": "lines", 
+            "line": {
+                "color": "rgb(188, 189, 34)"
+            }, 
+            "type": "scatter", 
+            "autobiny": true
+        }
+    ]
 }

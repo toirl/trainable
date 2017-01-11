@@ -75,6 +75,8 @@ def heartratezones(heartrate_stream, mhr):
     zones["EB"] = []
     zones["SB"] = []
     for rate in heartrate_stream:
+        if rate is None:
+            continue
         zone = get_heartratezone(rate, mhr)
         if zone not in zones:
             zones[zone] = []
@@ -239,15 +241,18 @@ class Activity(BaseItem, Owned, Base):
         rhr = 36
         trimp = 0
         mhr = self.owner.profile[0].max_heartrate
+
         if not self.heartrate_stream:
-            zones = heartratezones([self.heartrate], mhr)
+            heartrate_stream = [self.heartrate]
         else:
-            zones = heartratezones(self.heartrate_stream, mhr)
+            heartrate_stream = self.heartrate_stream
+
+        zones = heartratezones(heartrate_stream, mhr)
         for key in zones:
             if not len(zones[key]):
                 continue
             avg_hr = sum(zones[key]) / float(len(zones[key]))
-            zone_duration = len(zones[key]) / float(len(self.heartrate_stream)) * 100
+            zone_duration = len(zones[key]) / float(len(heartrate_stream)) * 100
             D = total_minutes / 100.0 * zone_duration
             delta_heartrate = (avg_hr-rhr)/float(mhr-rhr)
             trimp += int(D * delta_heartrate * 0.64 * math.pow(2.71828, 1.92 * delta_heartrate))

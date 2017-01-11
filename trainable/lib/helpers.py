@@ -15,14 +15,15 @@ def get_trainingplans_for_user(request):
     return plans.items
 
 
-def get_activities_for_user(request, tp):
-    start_date = tp.start_date
-    end_date = tp.end_date
-
+def get_activities_for_user(request, tp=None):
     activities = get_item_list(request, Activity, user=request.user)
-    filter_stack = [(">= {}".format(start_date), "date", False),
-                    ("<= {}".format(end_date), "date", False)]
-    activities.filter(filter_stack)
+    if tp:
+        start_date = tp.start_date
+        end_date = tp.end_date
+        filter_stack = [(">= {}".format(start_date), "date", False),
+                        ("<= {}".format(end_date), "date", False)]
+        activities.filter(filter_stack)
+    activities.sort(field="date", order="asc")
     return activities.items
 
 

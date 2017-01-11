@@ -15,25 +15,28 @@ mapping={'app_title': h.get_app_title()}
   </p>
 % else:
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-          % for tp, workload in trainingplans:
           <div class="card">
             <div class="card-header">
-              ${_('Current week in trainingsplan "{0}"').format(tp)}
+              ${_('Overall fitness trend')}
             </div>
             <div class="card-content">
+              <div id="fitness" style="width: 100%; height: 100%;" class="plotly-graph-div"></div>
+              <script type="text/javascript">
+                (function(){
+                  initFitnessPlot('fitness', ${fitness.get_diagram_values()});
+                }());
+              </script>
             </div>
           </div>
-          % endfor
-          % if len(trainingplans) == 0:
-            Oh! It seems you do not have any active trainingplan.</br>
-            Start now and create a new <a
-              href="${request.route_path('trainingplans-create', _query={"backurl": request.route_path('home')})}">Trainingplan</a>!
-          % endif
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
     </div>
     <div class="col-md-4">
       <%include file="/index/stravasync.mako" />

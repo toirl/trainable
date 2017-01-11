@@ -8,6 +8,7 @@ from ringo.views.home import index_view
 from ringo.lib.form import get_path_to_form_config, get_eval_url
 
 from trainable.views.strava import sync
+from trainable.lib.fitness import get_fitness
 from trainable.lib.helpers import (
     get_trainingplans_for_user,
     get_activities_for_user,
@@ -36,13 +37,7 @@ def trainable_index_view(request):
                  form.data.get("start"), form.data.get("end"),
                  form.data.get("commute"))
 
-        tps = []
-        for tp in get_trainingplans_for_user(request):
-            activities = get_activities_for_user(request, tp)
-            workload = get_workload_for_trainingplan(request, tp, activities)
-            tps.append((tp, workload))
-
-        values["trainingplans"] = tps
+        values["fitness"] = get_fitness(0, 0, get_activities_for_user(request))
         values["strava_auth_url"] = url
         values["strava_syncform"] = form.render()
     return values
