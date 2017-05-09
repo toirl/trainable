@@ -124,7 +124,7 @@ def update_trainable(request, sport, start, end, commute):
     request.session.flash(msg_synced, "success")
     request.session.flash(msg_ignored, "info")
 
-    importer = JSONImporter(Activity)
+    importer = JSONImporter(Activity, db=request.db)
     items = importer.perform(json.dumps(activities),
                              request.user, load_key="strava_id")
     return _handle_save(request, items, None)
