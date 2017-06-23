@@ -1,4 +1,4 @@
-ringo
-requests
-stravalib
--e git+http://github.com/ringo-framework/ringo_diagram#egg=ringo_diagram
+-e git+https://github.com/ringo-framework/brabbel@7747c8efefd47df49ea1077a65a4c5be35435448#egg=brabbel
+-e git+https://github.com/ringo-framework/formbar@039c506da8dea87eb6cc152672c725699ac77ae0#egg=formbar
+-e git+https://github.com/ringo-framework/ringo@605bba4a4969d801e3630a3faded9cf86f3c579d#egg=ringo
+-e git+https://github.com/ringo-framework/ringo_diagram.git@85eb2efef69c8af87c42b2b2b1df220631b69d08#egg=ringo_diagram
